@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_DomeSkybox
+  m_Shader: {fileID: -6465566751694194690, guid: 4a61a85ba139c79479ce2f21cfd1e374,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SGSingleParticle_9b74e1d945554c5ea87d3306f4178581_Texture2Dbd5b8ce37ff545e1be8d418c193ee500_3418281140:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _cubemap_0:
+        m_Texture: {fileID: 8900000, guid: 2a1f2c34a6bb71040aad59820a39f105, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _horizonMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _normals_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_1e1d6744b98b44e6a58172cca5720d78: 0
+    - _RenderDistance_0: 0
+    - _dayTime: 0
+    - _fadeTime_0: 1
+    - _horizonHeight: 0.96
+    - _horizonWidth: 0.3
+    - _layerType_0: 4
+    - _lightIntensity_0: 0.5
+    - _normalIntensity_0: 0
+    m_Colors:
+    - _HorizonPlaneColor: {r: 0.42452824, g: 0.30449164, b: 0.22628152, a: 0}
+    - _color_0: {r: 1, g: 1, b: 1, a: 1}
+    - _distortIntAndSize_0: {r: 0, g: 0, b: 0, a: 0}
+    - _distortSpeedAndSharp_0: {r: 0, g: 0, b: 0, a: 0}
+    - _groundColor: {r: 0.002669996, g: 0.27660108, b: 0.5660378, a: 0}
+    - _horizonColor: {r: 1, g: 0, b: 0.63411707, a: 0}
+    - _horizonMaskValues: {r: 0, g: 0, b: 0, a: 0}
+    - _lightDirection: {r: 0, g: 0, b: 0, a: 0}
+    - _lightTint: {r: 0.9716981, g: 0.9225325, b: 0.7196066, a: 1}
+    - _particlesMainParameters_0: {r: 0, g: 0, b: 0, a: 0}
+    - _particlesSecondaryParameters_0: {r: 0, g: 0, b: 0, a: 0}
+    - _rowAndCollumns_0: {r: 0, g: 0, b: 0, a: 0}
+    - _skyColor: {r: 0, g: 0.7104626, b: 1, a: 0}
+    - _speedAndRotation_0: {r: 0, g: 0, b: 0, a: 0}
+    - _tilingAndOffset_0: {r: 1, g: 1, b: 0, a: 0}
+    - _timeFrame_0: {r: 0, g: 10, b: 0, a: 0}
+  m_BuildTextureStacks: []
