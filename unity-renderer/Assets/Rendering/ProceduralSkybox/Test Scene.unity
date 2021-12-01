@@ -6198,7 +6198,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 2000
+  far clip plane: 2100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -6303,7 +6303,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dafe6fef900d8924a8e7f637a1195c68, type: 2}
+  - {fileID: 2100000, guid: b7eb7545e85d72742a9e554ff8652095, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
