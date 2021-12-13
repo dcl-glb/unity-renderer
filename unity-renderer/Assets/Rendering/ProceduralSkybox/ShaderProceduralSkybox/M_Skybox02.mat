@@ -198,7 +198,7 @@ Material:
     - _RenderDistance_2: 0
     - _RenderDistance_3: 0
     - _RenderDistance_4: 3.4
-    - _dayTime: 0.01
+    - _dayTime: 7.3
     - _distance_0: 20
     - _fadeTime_0: 1
     - _fadeTime_1: 1
