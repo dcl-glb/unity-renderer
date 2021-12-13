@@ -61,6 +61,10 @@ namespace DCL.Skybox
         // Timeline Tags
         public List<TimelineTagsDuration> timelineTags = new List<TimelineTagsDuration>();
 
+        // Environment Reflection
+        public float timeToCreateCubemap;
+        public bool useCustomReflection;
+
         private float cycleTime = 24;
 
         [ContextMenu("Fill layers array")]
@@ -83,7 +87,6 @@ namespace DCL.Skybox
             float percentage = normalizedDayTime * 100;
 
             // General Values
-            selectedMat.SetFloat("_dayTime", dayTime);
             selectedMat.SetColor("_lightTint", directionalLightLayer.tintColor.Evaluate(normalizedDayTime));
             selectedMat.SetVector("_lightDirection", directionalLightGO.transform.rotation.eulerAngles);
 
@@ -566,11 +569,7 @@ namespace DCL.Skybox
 
         void ApplyPlanarTextureLayer(Material selectedMat, float dayTime, float normalizedLayerTime, int layerNum, TextureLayer layer, bool changeAlllValues = true)
         {
-            if (layer.layerType == LayerType.Planar)
-            {
-                selectedMat.SetFloat("_RenderDistance_" + layerNum, GetTransitionValue(layer.renderDistance, normalizedLayerTime * 100, 3.4f));
-            }
-
+            selectedMat.SetFloat("_RenderDistance_" + layerNum, GetTransitionValue(layer.renderDistance, normalizedLayerTime * 100, 3.4f));
             selectedMat.SetTexture("_tex_" + layerNum, layer.texture);
             selectedMat.SetTexture("_normals_" + layerNum, layer.textureNormal);
             selectedMat.SetTexture("_cubemap_" + layerNum, null);
