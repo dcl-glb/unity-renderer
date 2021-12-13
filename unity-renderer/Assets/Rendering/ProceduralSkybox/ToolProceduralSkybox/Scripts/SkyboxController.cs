@@ -10,18 +10,18 @@ namespace DCL.Skybox
     /// Load and assign material to the Skybox.
     /// This will mostly increment the time cycle and apply values from configuration to the material.
     /// </summary>
-    public class SkyboxController : PluginFeature
+    public class SkyboxController : IPlugin
     {
         public event SkyboxConfiguration.TimelineEvents OnTimelineEvent;
 
         public static SkyboxController i { get; private set; }
 
-        public const string DEFAULT_SKYBOX_ID = "Generic Skybox";
+        public const string DEFAULT_SKYBOX_ID = "Generic_Skybox";
 
         public string loadedConfig;
         //Time for one complete circle. In Hours. default 24
         public float cycleTime = 24;
-        public float lifecycleDuration = 1;
+        public float lifecycleDuration = 2;
 
         private float timeOfTheDay;                            // (Nishant.K) Time will be provided from outside, So remove this variable
         private Light directionalLight;
@@ -32,11 +32,20 @@ namespace DCL.Skybox
         private bool isPaused;
         private float timeNormalizationFactor;
         private int slotCount;
+        private bool overrideByEditor = false;
 
-        public override void Initialize()
+        // Reflection probe
+        private ReflectionProbe skyboxProbe;
+        bool probeParented = false;
+        private float reflectionUpdateTime = 1;                                 // In Mins
+        private ReflectionProbeRuntime runtimeReflectionObj;
+
+        // Timer sync
+        private int syncCounter = 0;
+        private int syncAfterCount = 10;
+
+        public SkyboxController()
         {
-            base.Initialize();
-
             i = this;
 
             // Find and delete test directional light obj if any
@@ -57,6 +66,8 @@ namespace DCL.Skybox
                 directionalLight.type = LightType.Directional;
             }
 
+            GetOrCreateEnvironmentProbe();
+
             // Get current time from the server
             GetTimeFromTheServer(WorldTimer.i.GetCurrentTime());
             WorldTimer.i.OnTimeChanged += GetTimeFromTheServer;
@@ -72,14 +83,85 @@ namespace DCL.Skybox
                         });
 
             KernelConfig.i.OnChange += KernelConfig_OnChange;
+
+            DCL.Environment.i.platform.updateEventHandler.AddListener(IUpdateEventHandler.EventType.Update, Update);
+        }
+
+        private void GetOrCreateEnvironmentProbe()
+        {
+            // Get Reflection Probe Object
+            skyboxProbe = GameObject.FindObjectsOfType<ReflectionProbe>().Where(s => s.name == "SkyboxProbe").FirstOrDefault();
+
+            if (DataStore.i.skyboxConfig.disableReflection.Get())
+            {
+                if (skyboxProbe != null)
+                {
+                    skyboxProbe.gameObject.SetActive(false);
+                }
+
+                RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+                RenderSettings.customReflection = null;
+                Debug.Log("Procedural Skybox :: Reflection disabled from server: " + DataStore.i.skyboxConfig.disableReflection.Get());
+                return;
+            }
+
+            if (skyboxProbe == null)
+            {
+                // Instantiate new probe from the resources
+                GameObject temp = Resources.Load<GameObject>("SkyboxReflectionProbe/SkyboxProbe");
+                GameObject probe = GameObject.Instantiate<GameObject>(temp);
+                probe.name = "SkyboxProbe";
+                skyboxProbe = probe.GetComponent<ReflectionProbe>();
+
+                // make probe a child of main camera
+                AssignCameraInstancetoProbe();
+            }
+
+            // Update time in Reflection Probe
+            runtimeReflectionObj = skyboxProbe.GetComponent<ReflectionProbeRuntime>();
+            if (runtimeReflectionObj == null)
+            {
+                runtimeReflectionObj = skyboxProbe.gameObject.AddComponent<ReflectionProbeRuntime>();
+            }
+            // Assign as seconds
+            runtimeReflectionObj.updateAfter = reflectionUpdateTime * 60;
+
+            RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Custom;
+            RenderSettings.customReflection = null;
+        }
+
+        private void AssignCameraInstancetoProbe()
+        {
+            if (skyboxProbe == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError("Cannot parent the probe as probe is not instantiated");
+#endif
+                return;
+            }
+
+            // make probe a child of main camera
+            if (Camera.main != null)
+            {
+                GameObject mainCam = Camera.main.gameObject;
+                runtimeReflectionObj.followTransform = mainCam.transform;
+                probeParented = true;
+            }
         }
 
         private void KernelConfig_OnChange(KernelConfigModel current, KernelConfigModel previous)
         {
+            if (overrideByEditor)
+            {
+                return;
+            }
             // set skyboxConfig to true
             DataStore.i.skyboxConfig.useProceduralSkybox.Set(true);
             DataStore.i.skyboxConfig.configToLoad.Set(current.proceduralSkyboxConfig.configToLoad);
             DataStore.i.skyboxConfig.lifecycleDuration.Set(current.proceduralSkyboxConfig.lifecycleDuration);
+            DataStore.i.skyboxConfig.jumpToTime.Set(current.proceduralSkyboxConfig.fixedTime);
+            DataStore.i.skyboxConfig.updateReflectionTime.Set(current.proceduralSkyboxConfig.updateReflectionTime);
+            DataStore.i.skyboxConfig.disableReflection.Set(current.proceduralSkyboxConfig.disableReflection);
 
             // Call update on skybox config which will call Update config in this class.
             DataStore.i.skyboxConfig.objectUpdated.Set(true, true);
@@ -92,6 +174,11 @@ namespace DCL.Skybox
         /// <param name="previous"></param>
         public void UpdateConfig(bool current = true, bool previous = false)
         {
+            if (overrideByEditor)
+            {
+                return;
+            }
+
             if (loadedConfig != DataStore.i.skyboxConfig.configToLoad.Get())
             {
                 // Apply configuration
@@ -101,24 +188,6 @@ namespace DCL.Skybox
 
             // Apply time
             lifecycleDuration = DataStore.i.skyboxConfig.lifecycleDuration.Get();
-
-            // if Paused
-            if (DataStore.i.skyboxConfig.pauseTime.Get())
-            {
-                PauseTime();
-            }
-            else
-            {
-                ResumeTime();
-            }
-
-            // Jump to time
-            if (DataStore.i.skyboxConfig.jumpTime)
-            {
-                float jumpToTime = DataStore.i.skyboxConfig.jumpToTime.Get();
-                timeOfTheDay = Mathf.Clamp(jumpToTime, 0, cycleTime);
-                DataStore.i.skyboxConfig.jumpTime = false;
-            }
 
             if (DataStore.i.skyboxConfig.useProceduralSkybox.Get())
             {
@@ -134,6 +203,44 @@ namespace DCL.Skybox
 
             // Reset Object Update value without notifying
             DataStore.i.skyboxConfig.objectUpdated.Set(false, false);
+
+            // if Paused
+            if (DataStore.i.skyboxConfig.jumpToTime.Get() >= 0)
+            {
+                PauseTime(true, DataStore.i.skyboxConfig.jumpToTime.Get());
+            }
+            else
+            {
+                ResumeTime();
+            }
+
+            // Update reflection time
+            if (DataStore.i.skyboxConfig.disableReflection.Get())
+            {
+                if (skyboxProbe != null)
+                {
+                    skyboxProbe.gameObject.SetActive(false);
+                }
+
+                RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+                RenderSettings.customReflection = null;
+            }
+            else if (runtimeReflectionObj != null)
+            {
+                // If reflection update time is -1 then calculate time based on the cycle time, else assign same
+                if (DataStore.i.skyboxConfig.updateReflectionTime.Get() >= 0)
+                {
+                    reflectionUpdateTime = DataStore.i.skyboxConfig.updateReflectionTime.Get();
+                }
+                else
+                {
+                    // Evaluate with the cycle time
+                    reflectionUpdateTime = 1;               // Default for an hour is 1 min
+                    // get cycle time in hours
+                    reflectionUpdateTime = (DataStore.i.skyboxConfig.lifecycleDuration.Get() / 60);
+                }
+                runtimeReflectionObj.updateAfter = Mathf.Clamp(reflectionUpdateTime * 60, 5, 86400);
+            }
         }
 
         /// <summary>
@@ -141,6 +248,11 @@ namespace DCL.Skybox
         /// </summary>
         bool ApplyConfig()
         {
+            if (overrideByEditor)
+            {
+                return false;
+            }
+
             if (!SelectSkyboxConfiguration())
             {
                 return false;
@@ -159,23 +271,26 @@ namespace DCL.Skybox
 
             // Convert minutes in seconds and then normalize with cycle time
             timeNormalizationFactor = lifecycleDuration * 60 / cycleTime;
+
+            GetTimeFromTheServer(WorldTimer.i.GetCurrentTime());
             return true;
         }
 
         void GetTimeFromTheServer(DateTime serverTime)
         {
             // Convert miliseconds to seconds
-            float seconds = serverTime.Second + ((float)serverTime.Millisecond / 1000);
-            // Convert seconds to minutes
-            float minutes = serverTime.Minute + (seconds / 60);
-            // Convert minutes to hour (in float format)
-            float hours = serverTime.Hour + (minutes / 60);
-            // divide by lifecycleDuration.... + 1 as hour is from 0 to 23
-            float timeInCycle = (hours / (lifecycleDuration / 60)) + 1;
-            // get percentage part for converting to skybox time
-            float percentageSkyboxtime = timeInCycle - (int)timeInCycle;
+            double seconds = serverTime.Second + (serverTime.Millisecond / 1000);
 
-            timeOfTheDay = percentageSkyboxtime * cycleTime;
+            // Convert seconds to minutes
+            double minutes = serverTime.Minute + (seconds / 60);
+
+            // Convert minutes to hour (in float format)
+            double totalTimeInMins = serverTime.Hour * 60 + minutes;
+
+            double timeInCycle = (totalTimeInMins / lifecycleDuration) + 1;
+            double percentageSkyboxtime = timeInCycle - (int)timeInCycle;
+
+            timeOfTheDay = (float)percentageSkyboxtime * cycleTime;
         }
 
         /// <summary>
@@ -184,7 +299,13 @@ namespace DCL.Skybox
         private bool SelectSkyboxConfiguration()
         {
             bool tempConfigLoaded = true;
-            string configToLoad = DEFAULT_SKYBOX_ID;
+
+            string configToLoad = loadedConfig;
+            if (string.IsNullOrEmpty(loadedConfig))
+            {
+                configToLoad = DEFAULT_SKYBOX_ID;
+            }
+
 
             if (overrideDefaultSkybox)
             {
@@ -243,25 +364,44 @@ namespace DCL.Skybox
                 RenderSettings.skybox = selectedMat;
             }
 
+            // Update loaded config
+            loadedConfig = configToLoad;
+
             return tempConfigLoaded;
         }
 
-        private void Configuration_OnTimelineEvent(string tag, bool enable, bool trigger)
-        {
-            Debug.Log("Timeline Events: " + tag + ", state: " + enable + ", trigger: " + trigger);
-            OnTimelineEvent?.Invoke(tag, enable, trigger);
-        }
+        private void Configuration_OnTimelineEvent(string tag, bool enable, bool trigger) { OnTimelineEvent?.Invoke(tag, enable, trigger); }
 
         // Update is called once per frame
-        public override void Update()
+        public void Update()
         {
+            if (!DataStore.i.skyboxConfig.disableReflection.Get() && skyboxProbe != null && !probeParented)
+            {
+                AssignCameraInstancetoProbe();
+            }
+
             if (configuration == null || isPaused || !DataStore.i.skyboxConfig.useProceduralSkybox.Get())
+            {
+                return;
+            }
+
+            // Control is in editor tool
+            if (overrideByEditor)
             {
                 return;
             }
 
             timeOfTheDay += Time.deltaTime / timeNormalizationFactor;
             timeOfTheDay = Mathf.Clamp(timeOfTheDay, 0.01f, cycleTime);
+            DataStore.i.skyboxConfig.currentVirtualTime.Set(timeOfTheDay);
+
+            syncCounter++;
+
+            if (syncCounter >= syncAfterCount)
+            {
+                GetTimeFromTheServer(WorldTimer.i.GetCurrentTime());
+                syncCounter = 0;
+            }
 
             configuration.ApplyOnMaterial(selectedMat, timeOfTheDay, GetNormalizedDayTime(), slotCount, directionalLight, cycleTime);
 
@@ -271,18 +411,30 @@ namespace DCL.Skybox
                 timeOfTheDay = 0.01f;
                 configuration.CycleResets();
             }
+
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
-            base.Dispose();
             // set skyboxConfig to false
             DataStore.i.skyboxConfig.useProceduralSkybox.Set(false);
             DataStore.i.skyboxConfig.objectUpdated.OnChange -= UpdateConfig;
+
+            WorldTimer.i.OnTimeChanged -= GetTimeFromTheServer;
             configuration.OnTimelineEvent -= Configuration_OnTimelineEvent;
+            KernelConfig.i.OnChange -= KernelConfig_OnChange;
+            DCL.Environment.i.platform.updateEventHandler.RemoveListener(IUpdateEventHandler.EventType.Update, Update);
         }
 
-        public void PauseTime() { isPaused = true; }
+        public void PauseTime(bool overrideTime = false, float newTime = 0)
+        {
+            isPaused = true;
+            if (overrideTime)
+            {
+                timeOfTheDay = Mathf.Clamp(newTime, 0, 24);
+                configuration.ApplyOnMaterial(selectedMat, (float)timeOfTheDay, GetNormalizedDayTime(), slotCount, directionalLight, cycleTime);
+            }
+        }
 
         public void ResumeTime(bool overrideTime = false, float newTime = 0)
         {
@@ -297,18 +449,68 @@ namespace DCL.Skybox
 
         private float GetNormalizedDayTime()
         {
-            float tTime = 0;
+            double tTime = 0;
 
             tTime = timeOfTheDay / cycleTime;
 
-            tTime = Mathf.Clamp(tTime, 0, 1);
+            tTime = ClampDouble(tTime, 0, 1);
 
-            return tTime;
+            return (float)tTime;
         }
 
         public SkyboxConfiguration GetCurrentConfiguration() { return configuration; }
 
-        public float GetCurrentTimeOfTheDay() { return timeOfTheDay; }
+        public float GetCurrentTimeOfTheDay() { return (float)timeOfTheDay; }
 
+        public bool SetOverrideController(bool editorOveride)
+        {
+            overrideByEditor = editorOveride;
+            return overrideByEditor;
+        }
+
+        // Whenever Skybox editor closed at runtime control returns back to controller with the values in the editor
+        public bool GetControlBackFromEditor(string currentConfig, float timeOfTheday, float lifecycleDuration, bool isPaused)
+        {
+            overrideByEditor = false;
+
+            DataStore.i.skyboxConfig.configToLoad.Set(currentConfig);
+            DataStore.i.skyboxConfig.lifecycleDuration.Set(lifecycleDuration);
+
+            if (isPaused)
+            {
+                PauseTime(true, timeOfTheday);
+            }
+            else
+            {
+                ResumeTime(true, timeOfTheday);
+            }
+
+            // Call update on skybox config which will call Update config in this class.
+            DataStore.i.skyboxConfig.objectUpdated.Set(true, true);
+
+            return overrideByEditor;
+        }
+
+        public void UpdateConfigurationTimelineEvent(SkyboxConfiguration newConfig)
+        {
+            configuration.OnTimelineEvent -= Configuration_OnTimelineEvent;
+            newConfig.OnTimelineEvent += Configuration_OnTimelineEvent;
+        }
+
+        private double ClampDouble(double timeOfTheDay, double min, float max)
+        {
+            double result = timeOfTheDay;
+            if (timeOfTheDay < min)
+            {
+                result = min;
+            }
+
+            if (timeOfTheDay > max)
+            {
+                result = max;
+            }
+
+            return result;
+        }
     }
 }

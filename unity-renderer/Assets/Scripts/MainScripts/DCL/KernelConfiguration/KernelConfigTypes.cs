@@ -125,13 +125,17 @@ namespace KernelConfigurationTypes
     [Serializable]
     public class ProceduralSkybox
     {
-        public string configToLoad = "Variation_1";
-        public float lifecycleDuration = 1;
+        public string configToLoad = "Generic_Skybox";
+        public float lifecycleDuration = 120;
+        public float fixedTime = -1;
+        public bool disableReflection = false;
+        public float updateReflectionTime = -1;     // in mins
 
         public bool Equals(ProceduralSkybox other)
         {
             return configToLoad == other?.configToLoad &&
-                   lifecycleDuration == other?.lifecycleDuration;
+                   lifecycleDuration == other?.lifecycleDuration &&
+                   fixedTime == other?.fixedTime;
         }
 
         public ProceduralSkybox Clone()

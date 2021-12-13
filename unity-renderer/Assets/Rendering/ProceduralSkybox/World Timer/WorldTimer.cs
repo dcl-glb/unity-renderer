@@ -12,11 +12,11 @@ namespace DCL.ServerTime
         public event OnTimeUpdated OnTimeChanged;
 
         public float serverHitFrequency;
-        public string serverURL = "http://worldtimeapi.org/api/timezone/Etc/UTC";
+        public string serverURL = "https://peer.decentraland.org/lambdas/health";
 
         private bool initialized = false;
-        private DateTime lastTimeFromServer;
-        private DateTime lastTimeFromSystem = DateTime.UtcNow;
+        private DateTime lastTimeFromServer = DateTime.Now.ToUniversalTime();
+        private DateTime lastTimeFromSystem = DateTime.Now;
         private TimeSpan timeOffset;
         private bool stopTimer = false;
         UnityWebRequest webRequest;
@@ -37,8 +37,8 @@ namespace DCL.ServerTime
                 case UnityWebRequest.Result.InProgress:
                     break;
                 case UnityWebRequest.Result.Success:
-                    TimerSchema res = JsonUtility.FromJson<TimerSchema>(webRequest.downloadHandler.text);
-                    UpdateTimeWithServerTime(res.datetime);
+                    string responseHeaderTime = webRequest.GetResponseHeader("date");
+                    UpdateTimeWithServerTime(responseHeaderTime);
                     initialized = true;
                     break;
                 case UnityWebRequest.Result.ConnectionError:
@@ -60,11 +60,9 @@ namespace DCL.ServerTime
             if (DateTime.TryParse(datetime, out serverTime))
             {
                 // Update last server time
-                lastTimeFromServer = serverTime;
+                lastTimeFromServer = serverTime.ToUniversalTime();
                 // Update current time from the system
-                lastTimeFromSystem = DateTime.UtcNow;
-
-                timeOffset = lastTimeFromServer - lastTimeFromSystem;
+                lastTimeFromSystem = DateTime.Now;
 
                 // Fire Event
                 OnTimeChanged?.Invoke(lastTimeFromServer);
@@ -73,13 +71,8 @@ namespace DCL.ServerTime
 
         public DateTime GetCurrentTime()
         {
-            DateTime currentTime = DateTime.UtcNow.Add(timeOffset);
-            return currentTime;
+            TimeSpan systemTimeOffset = DateTime.Now - lastTimeFromSystem;
+            return lastTimeFromServer.ToUniversalTime().Add(systemTimeOffset);
         }
-    }
-
-    public class TimerSchema
-    {
-        public string datetime;
     }
 }

@@ -24,6 +24,7 @@ namespace DCL.Skybox
         private Light directionalLight;
         private bool creatingNewConfig;
         private string newConfigName;
+        private bool overridingController;
 
         private bool showBackgroundLayer;
         private bool showAmbienLayer;
@@ -33,46 +34,35 @@ namespace DCL.Skybox
         private bool showTimelineTags;
         private MaterialReferenceContainer.Mat_Layer matLayer = null;
 
+        private GUIStyle foldoutStyle;
+        private GUIStyle renderingMarkerStyle;
+        private GUIStyle configurationStyle;
+        private GUIStyle percentagePartStyle;
+
+        private List<string> renderingOrderList;
+
         public static SkyboxEditorWindow instance { get { return GetWindow<SkyboxEditorWindow>(); } }
 
-        private void OnEnable()
+        #region Unity Callbacks
+
+        private void OnEnable() { EnsureDependencies(); }
+
+        private void OnDestroy()
         {
-            if (selectedConfiguration == null)
+            // If in play mode and editor is closed
+            // Transfer control back to skybox controller with the new values in the editor
+            if (SkyboxController.i == null)
             {
-                EnsureDependencies();
+                return;
+            }
+
+            if (Application.isPlaying && SkyboxController.i != null)
+            {
+                overridingController = SkyboxController.i.GetControlBackFromEditor(selectedConfiguration.name, timeOfTheDay, lifecycleDuration, isPaused);
             }
         }
 
-        void OnFocus()
-        {
-            if (selectedConfiguration == null)
-            {
-                OnEnable();
-            }
-        }
-
-        [MenuItem("Window/Skybox Editor")]
-        static void Init()
-        {
-            SkyboxEditorWindow window = (SkyboxEditorWindow)EditorWindow.GetWindow(typeof(SkyboxEditorWindow));
-            window.minSize = new Vector2(500, 500);
-            window.Show();
-            window.InitializeWindow();
-        }
-
-        public void InitializeWindow()
-        {
-            if (Application.isPlaying)
-            {
-                if (SkyboxController.i != null)
-                {
-                    isPaused = SkyboxController.i.IsPaused();
-                    lifecycleDuration = SkyboxController.i.lifecycleDuration;
-                    selectedConfiguration = SkyboxController.i.GetCurrentConfiguration();
-                }
-            }
-            EnsureDependencies();
-        }
+        void OnFocus() { EnsureDependencies(); }
 
         void OnGUI()
         {
@@ -84,11 +74,24 @@ namespace DCL.Skybox
 
             GUILayout.Space(32);
             RenderTimePanel();
-            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             GUILayout.Space(12);
 
-            panelScrollPos = EditorGUILayout.BeginScrollView(panelScrollPos);
-            GUILayout.Space(32);
+            showTimelineTags = EditorGUILayout.Foldout(showTimelineTags, "Timeline Tags", true);
+
+            if (showTimelineTags)
+            {
+                EditorGUI.indentLevel++;
+                RenderTimelineTags();
+                EditorGUI.indentLevel--;
+            }
+
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+            GUILayout.Space(5);
+
+            panelScrollPos = EditorGUILayout.BeginScrollView(panelScrollPos, "box");
+
+            GUILayout.Space(10);
+
             showBackgroundLayer = EditorGUILayout.Foldout(showBackgroundLayer, "BG Layer", true);
             if (showBackgroundLayer)
             {
@@ -140,35 +143,15 @@ namespace DCL.Skybox
 
             GUILayout.Space(32);
 
-            showTimelineTags = EditorGUILayout.Foldout(showTimelineTags, "Timeline Tags", true);
-
-            if (showTimelineTags)
-            {
-                //EditorGUILayout.BeginHorizontal();
-                //EditorGUILayout.Space(20);
-                //EditorGUILayout.BeginVertical("Box");
-                EditorGUI.indentLevel++;
-                RenderTimelineTags();
-                EditorGUI.indentLevel--;
-                //EditorGUILayout.EndVertical();
-                //EditorGUILayout.EndHorizontal();
-            }
-
-
-            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-            GUILayout.Space(32);
-
-            // Render Slots
-            //RenderSlots();
 
             // Render Layers
             RenderTextureLayers(selectedConfiguration.layers);
 
-            GUILayout.Space(300);
             EditorGUILayout.EndScrollView();
+            GUILayout.Space(10);
             GUILayout.EndArea();
 
-            if (GUI.changed && !Application.isPlaying)
+            if (GUI.changed)
             {
                 ApplyOnMaterial();
             }
@@ -186,13 +169,6 @@ namespace DCL.Skybox
                 return;
             }
 
-            if (Application.isPlaying)
-            {
-                timeOfTheDay = SkyboxController.i.GetCurrentTimeOfTheDay();
-                Repaint();
-                return;
-            }
-
             float timeNormalizationFactor = lifecycleDuration * 60 / 24;
             timeOfTheDay += Time.deltaTime / timeNormalizationFactor;
             timeOfTheDay = Mathf.Clamp(timeOfTheDay, 0.01f, 24);
@@ -202,21 +178,66 @@ namespace DCL.Skybox
             if (timeOfTheDay >= 24)
             {
                 timeOfTheDay = 0.01f;
+                selectedConfiguration.CycleResets();
             }
 
             Repaint();
         }
 
+        #endregion
+
+        [MenuItem("Window/Skybox Editor")]
+        static void Init()
+        {
+            SkyboxEditorWindow window = (SkyboxEditorWindow)EditorWindow.GetWindow(typeof(SkyboxEditorWindow));
+            window.minSize = new Vector2(500, 500);
+            window.Show();
+            window.InitializeWindow();
+        }
+
+        public void InitializeWindow() { EnsureDependencies(); }
+
         private void EnsureDependencies()
         {
+            if (!Application.isPlaying)
+            {
+                overridingController = false;
+            }
+
+            if (Application.isPlaying && !overridingController)
+            {
+                TakeControlAtRuntime();
+            }
+
             if (selectedConfiguration == null)
             {
                 UpdateConfigurationsList();
             }
 
-            UpdateMaterial();
+            if (matLayer == null || selectedMat == null)
+            {
+                UpdateMaterial();
+            }
+
+            CheckAndAssignAllStyles();
 
             EditorUtility.SetDirty(selectedConfiguration);
+
+            // Fill rendering order array
+            if (renderingOrderList == null)
+            {
+                renderingOrderList = new List<string>();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    renderingOrderList.Add((i + 1).ToString());
+                }
+            }
+
+            if (directionalLight != null)
+            {
+                return;
+            }
 
             // Cache directional light reference
             directionalLight = GameObject.FindObjectsOfType<Light>(true).Where(s => s.type == LightType.Directional).FirstOrDefault();
@@ -228,6 +249,47 @@ namespace DCL.Skybox
                 // Add the light component
                 directionalLight = temp.AddComponent<Light>();
                 directionalLight.type = LightType.Directional;
+            }
+        }
+
+        private void CheckAndAssignAllStyles()
+        {
+            if (foldoutStyle == null)
+            {
+                foldoutStyle = new GUIStyle(EditorStyles.foldout);
+                foldoutStyle.fixedWidth = 2;
+            }
+
+            if (renderingMarkerStyle == null)
+            {
+                renderingMarkerStyle = new GUIStyle(EditorStyles.label);
+                renderingMarkerStyle.fontSize = 18;
+            }
+
+            if (configurationStyle == null)
+            {
+                configurationStyle = new GUIStyle();
+                configurationStyle.alignment = TextAnchor.MiddleCenter;
+                configurationStyle.margin = new RectOffset(150, 200, 0, 0);
+            }
+
+            if (percentagePartStyle == null)
+            {
+                percentagePartStyle = new GUIStyle();
+                percentagePartStyle.alignment = TextAnchor.MiddleCenter;
+            }
+        }
+
+        void TakeControlAtRuntime()
+        {
+            if (SkyboxController.i != null)
+            {
+                isPaused = SkyboxController.i.IsPaused();
+                lifecycleDuration = (float)SkyboxController.i.lifecycleDuration;
+                selectedConfiguration = SkyboxController.i.GetCurrentConfiguration();
+                overridingController = SkyboxController.i.SetOverrideController(true);
+                timeOfTheDay = SkyboxController.i.GetCurrentTimeOfTheDay();
+                UpdateConfigurationsList();
             }
         }
 
@@ -253,7 +315,7 @@ namespace DCL.Skybox
             temp = ScriptableObject.CreateInstance<SkyboxConfiguration>();
             temp.skyboxID = name;
 
-            string path = AssetDatabase.GenerateUniqueAssetPath("Assets/Rendering/ProceduralSkybox/ToolProceduralSkybox/Scripts/Resources/Skybox Configurations/" + name + ".asset");
+            string path = AssetDatabase.GenerateUniqueAssetPath("Assets/Rendering/ProceduralSkybox/Resources/Skybox Configurations/" + name + ".asset");
             AssetDatabase.CreateAsset(temp, path);
             AssetDatabase.SaveAssets();
 
@@ -271,11 +333,9 @@ namespace DCL.Skybox
         {
             GUILayout.Label("Configurations", EditorStyles.boldLabel);
 
-            GUIStyle tStyle = new GUIStyle();
-            tStyle.alignment = TextAnchor.MiddleCenter;
-            tStyle.margin = new RectOffset(150, 200, 0, 0);
+
             GUILayout.Label("Loaded: " + selectedConfiguration.skyboxID);
-            GUILayout.BeginHorizontal(tStyle);
+            GUILayout.BeginHorizontal(configurationStyle);
 
             if (creatingNewConfig)
             {
@@ -290,6 +350,11 @@ namespace DCL.Skybox
                     // Update configuration list
                     UpdateConfigurationsList();
                     creatingNewConfig = false;
+
+                    if (Application.isPlaying && SkyboxController.i != null && overridingController)
+                    {
+                        SkyboxController.i.UpdateConfigurationTimelineEvent(selectedConfiguration);
+                    }
                 }
 
                 if (GUILayout.Button("Cancel", GUILayout.Width(50)))
@@ -311,11 +376,21 @@ namespace DCL.Skybox
                     selectedConfigurationIndex = newConfigIndex;
 
                     UpdateSlotsID();
+
+                    if (Application.isPlaying && SkyboxController.i != null && overridingController)
+                    {
+                        SkyboxController.i.UpdateConfigurationTimelineEvent(selectedConfiguration);
+                    }
                 }
 
                 if (selectedConfiguration != configurations[selectedConfigurationIndex])
                 {
                     UpdateConfigurationsList();
+
+                    if (Application.isPlaying && SkyboxController.i != null && overridingController)
+                    {
+                        SkyboxController.i.UpdateConfigurationTimelineEvent(selectedConfiguration);
+                    }
                 }
 
                 if (GUILayout.Button("+", GUILayout.Width(50)))
@@ -384,13 +459,13 @@ namespace DCL.Skybox
 
             GUILayout.Label("Preview", EditorStyles.boldLabel);
 
-            GUILayout.BeginHorizontal(GUILayout.Width(400));
+            GUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Time : " + timeOfTheDay.ToString("f2"), EditorStyles.label, GUILayout.Width(70));
 
             EditorGUILayout.Space(20);
 
             EditorGUILayout.BeginVertical();
-            timeOfTheDay = EditorGUILayout.Slider(timeOfTheDay, 0.01f, 24.00f, GUILayout.Width(150));
+            timeOfTheDay = EditorGUILayout.Slider(timeOfTheDay, 0.01f, 24.00f, GUILayout.MinWidth(150));
             GUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("cycle (minutes)", GUILayout.Width(95));
             lifecycleDuration = EditorGUILayout.FloatField(lifecycleDuration, GUILayout.Width(50));
@@ -417,29 +492,9 @@ namespace DCL.Skybox
             GUILayout.EndHorizontal();
         }
 
-        void ResumeTime()
-        {
-            isPaused = false;
-            if (Application.isPlaying)
-            {
-                if (SkyboxController.i != null)
-                {
-                    SkyboxController.i.ResumeTime(true, timeOfTheDay);
-                }
-            }
-        }
+        void ResumeTime() { isPaused = false; }
 
-        void PauseTime()
-        {
-            isPaused = true;
-            if (Application.isPlaying)
-            {
-                if (SkyboxController.i != null)
-                {
-                    SkyboxController.i.PauseTime();
-                }
-            }
-        }
+        void PauseTime() { isPaused = true; }
 
         #region Render Base Layeyrs
 
@@ -609,7 +664,7 @@ namespace DCL.Skybox
             GUILayout.Space(20);
             if (GUILayout.Button("+", GUILayout.Width(30)))
             {
-                selectedConfiguration.timelineTags.Add(new TimelineTagsDuration());
+                selectedConfiguration.timelineTags.Add(new TimelineTagsDuration(timeOfTheDay));
             }
             EditorGUILayout.EndHorizontal();
         }
@@ -618,56 +673,26 @@ namespace DCL.Skybox
 
         #region Render Slots and Layers
 
-        private void RenderSlots()
-        {
-            GUIStyle style = new GUIStyle(EditorStyles.foldout);
-            style.fixedWidth = 20;
-            for (int i = 0; i < selectedConfiguration.slots.Count; i++)
-            {
-                EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
-                selectedConfiguration.slots[i].enabled = EditorGUILayout.Toggle(selectedConfiguration.slots[i].enabled, GUILayout.Width(20), GUILayout.Height(10), GUILayout.ExpandWidth(false));
-                selectedConfiguration.slots[i].expandedInEditor = EditorGUILayout.Foldout(selectedConfiguration.slots[i].expandedInEditor, "Slot " + i, true, style);
-                EditorGUILayout.EndHorizontal();
-
-                // Render layers in slots
-                if (selectedConfiguration.slots[i].expandedInEditor)
-                {
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.Space(10);
-                    EditorGUILayout.BeginVertical("box");
-                    //RenderTextureLayers(selectedConfiguration.slots[i]);
-                    EditorGUILayout.EndVertical();
-                    EditorGUILayout.EndHorizontal();
-                }
-
-                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-                EditorGUILayout.Separator();
-            }
-        }
-
         void RenderTextureLayers(List<TextureLayer> layers)
         {
-            GUIStyle style = new GUIStyle(EditorStyles.foldout);
-            style.fixedWidth = 20;
+
             for (int i = 0; i < layers.Count; i++)
             {
                 // Name and buttons
                 EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
                 layers[i].enabled = EditorGUILayout.Toggle(layers[i].enabled, GUILayout.Width(20), GUILayout.Height(10));
                 GUILayout.Space(10);
-                layers[i].expandedInEditor = EditorGUILayout.Foldout(layers[i].expandedInEditor, "Layer ", true, style);
+                layers[i].expandedInEditor = EditorGUILayout.Foldout(layers[i].expandedInEditor, GUIContent.none, true, foldoutStyle);
                 layers[i].nameInEditor = EditorGUILayout.TextField(layers[i].nameInEditor, GUILayout.Width(100), GUILayout.ExpandWidth(false));
 
                 // Slot ID
-                layers[i].slotID = EditorGUILayout.IntField(layers[i].slotID, GUILayout.Width(40), GUILayout.ExpandWidth(false));
+                layers[i].slotID = EditorGUILayout.Popup(layers[i].slotID, renderingOrderList.ToArray(), GUILayout.Width(50));
 
                 if (i == 0)
                 {
                     GUI.enabled = false;
                 }
-
-                if (GUILayout.Button("Up", GUILayout.Width(50), GUILayout.ExpandWidth(false)))
+                if (GUILayout.Button(('\u25B2').ToString(), GUILayout.Width(50), GUILayout.ExpandWidth(false)))
                 {
                     TextureLayer temp = null;
 
@@ -686,7 +711,7 @@ namespace DCL.Skybox
                     GUI.enabled = false;
                 }
 
-                if (GUILayout.Button("Down", GUILayout.Width(50), GUILayout.ExpandWidth(false)))
+                if (GUILayout.Button(('\u25BC').ToString(), GUILayout.Width(50), GUILayout.ExpandWidth(false)))
                 {
                     TextureLayer temp = null;
                     if (i < (layers.Count - 1))
@@ -700,13 +725,37 @@ namespace DCL.Skybox
 
                 GUI.enabled = true;
 
-                if (GUILayout.Button(" - ", GUILayout.Width(50), GUILayout.ExpandWidth(false)))
+                if (GUILayout.Button("-", GUILayout.Width(50), GUILayout.ExpandWidth(false)))
                 {
                     layers.RemoveAt(i);
                     break;
                 }
 
-                EditorGUILayout.EnumPopup(layers[i].renderType, GUILayout.Width(100));
+                Color circleColor = Color.green;
+                switch (layers[i].renderType)
+                {
+                    case LayerRenderType.Rendering:
+                        circleColor = Color.green;
+                        break;
+                    case LayerRenderType.NotRendering:
+                        circleColor = Color.gray;
+                        break;
+                    case LayerRenderType.Conflict_Playing:
+                        circleColor = Color.yellow;
+                        break;
+                    case LayerRenderType.Conflict_NotPlaying:
+                        circleColor = Color.red;
+                        break;
+                    default:
+                        break;
+                }
+
+                Color normalContentColor = GUI.color;
+                GUI.color = circleColor;
+
+                EditorGUILayout.LabelField(('\u29BF').ToString(), renderingMarkerStyle, GUILayout.Width(20), GUILayout.Height(20));
+
+                GUI.color = normalContentColor;
 
                 EditorGUILayout.EndHorizontal();
 
@@ -1391,10 +1440,7 @@ namespace DCL.Skybox
         {
             GUILayout.Label(layerStartTime + "Hr", GUILayout.Width(35), GUILayout.ExpandWidth(false));
 
-            GUIStyle style = new GUIStyle();
-            style.alignment = TextAnchor.MiddleCenter;
-
-            GUILayout.BeginVertical(style, GUILayout.ExpandWidth(false), GUILayout.Width(150));
+            GUILayout.BeginVertical(percentagePartStyle, GUILayout.ExpandWidth(false), GUILayout.Width(150));
             float time = GetDayTimeForLayerNormalizedTime(layerStartTime, layerEndTime, percentage / 100);
             GUILayout.Label(time.ToString("f2") + " Hr", GUILayout.ExpandWidth(false));
             percentage = EditorGUILayout.Slider(percentage, 0, 100, GUILayout.Width(150), GUILayout.ExpandWidth(false));
