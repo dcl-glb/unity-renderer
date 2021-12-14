@@ -765,3 +765,5 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   timelineTags: []
+  timeToCreateCubemap: 0
+  useCustomReflection: 0
