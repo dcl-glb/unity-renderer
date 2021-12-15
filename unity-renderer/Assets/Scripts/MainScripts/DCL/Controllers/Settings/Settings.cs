@@ -93,12 +93,14 @@ namespace DCL.SettingsCommon
                 mouseSensitivity = 0.6f,
                 scenesLoadRadius = 4,
                 avatarsLODDistance = 16,
-                maxNonLODAvatars = DataStore.DataStore_AvatarsLOD.DEFAULT_MAX_AVATAR,
+                maxNonLODAvatars = DataStore_AvatarsLOD.DEFAULT_MAX_AVATAR,
                 voiceChatVolume = 1,
                 voiceChatAllow = GeneralSettings.VoiceChatAllow.ALL_USERS,
                 autoqualityOn = false,
                 namesOpacity = 0.5f,
-                profanityChatFiltering = true
+                profanityChatFiltering = true,
+                proceduralSkyboxMode = GeneralSettings.ProceduralSkyboxMode.DYNAMIC,
+                skyboxTime = 0.0f,
             };
         }
 

@@ -38,6 +38,7 @@ namespace DCL
         public bool openBrowserWhenStart;
 
         [Header("Kernel General Settings")]
+        public string kernelVersion;
         public bool useCustomContentServer = false;
 
         public string customContentServerUrl = "http://localhost:1338/";
@@ -138,6 +139,11 @@ namespace DCL
                     break;
             }
 
+            if (!string.IsNullOrEmpty(kernelVersion))
+            {
+                debugString += $"kernel-version={kernelVersion}&";
+            }
+
             if (forceLocalComms)
             {
                 debugString += "LOCAL_COMMS&";
@@ -195,6 +201,5 @@ namespace DCL
         }
 
         private void OnDestroy() { DataStore.i.wsCommunication.communicationReady.OnChange -= OnCommunicationReadyChangedValue; }
-
     }
 }
