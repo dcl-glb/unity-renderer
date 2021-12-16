@@ -218,7 +218,7 @@ Material:
     - _hasFade_1: 0
     - _hasFade_2: 0
     - _horizonHeight: 0
-    - _horizonPlaneHeigth: 0
+    - _horizonPlaneHeigth: -0.007
     - _horizonWidth: 0
     - _isRadial00: 0
     - _isRadial01: 1
@@ -242,7 +242,7 @@ Material:
     - _lightIntensity_2: 0.467
     - _lightIntensity_3: 0.85
     - _lightIntensity_4: 1
-    - _maskSmoothness: 0
+    - _maskSmoothness: 0.141
     - _normalIntensity00: 0.45
     - _normalIntensity01: 0.357
     - _normalIntensity02: 0
@@ -308,7 +308,7 @@ Material:
     - _groundColor: {r: 0.082764946, g: 0.0012477125, b: 0.18885218, a: 1}
     - _horizonColor: {r: 0.35707802, g: 0.00056571484, b: 0.6041195, a: 1}
     - _horizonMaskValues: {r: 0, g: 0, b: 0, a: 0}
-    - _horizonPlaneColor: {r: 0.42452827, g: 0.30449167, b: 0.22628155, a: 0}
+    - _horizonPlaneColor: {r: 0.42452815, g: 0.30449155, b: 0.2262814, a: 0}
     - _lightDirection: {r: 40.72383, g: 180, b: 180, a: 0}
     - _lightTint: {r: 0.13534454, g: 0.00065322215, b: 0.2827618, a: 1}
     - _particlesMainParameters_0: {r: 0, g: 0, b: 0, a: 0}

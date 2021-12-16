@@ -58,13 +58,15 @@ Material:
     - _RenderDistance_0: 0
     - _dayTime: 0
     - _fadeTime_0: 1
+    - _fogIntensity: 0
     - _horizonHeight: 0.96
+    - _horizonPlaneSmoothness: 0
     - _horizonWidth: 0.3
     - _layerType_0: 4
     - _lightIntensity_0: 0.5
     - _normalIntensity_0: 0
     m_Colors:
-    - _HorizonPlaneColor: {r: 0.42452824, g: 0.30449164, b: 0.22628152, a: 0}
+    - _HorizonPlaneColor: {r: 0.42452818, g: 0.30449158, b: 0.22628143, a: 0}
     - _color_0: {r: 1, g: 1, b: 1, a: 1}
     - _distortIntAndSize_0: {r: 0, g: 0, b: 0, a: 0}
     - _distortSpeedAndSharp_0: {r: 0, g: 0, b: 0, a: 0}
