@@ -58,7 +58,9 @@ Material:
     - _RenderDistance_0: 3
     - _dayTime: 0
     - _fadeTime_0: 1
+    - _fogIntensity: 0
     - _horizonHeight: 0.96
+    - _horizonPlaneSmoothness: 0
     - _horizonWidth: 0.3
     - _layerType_0: 0
     - _lightIntensity_0: 0.5
