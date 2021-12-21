@@ -48,6 +48,30 @@ Material:
         m_Texture: {fileID: 2800000, guid: b4c1ce2301a727543a5f460e3d33bd06, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SGMaskBelowHorizon_3d4e203c16834f55b743bb2bfd9c6efa_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGMaskBelowHorizon_43e66ba7303f4e96a3d169f7c62d4a93_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGMaskBelowHorizon_80bf67a4a8384fb1b2e225fc56f561b4_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGMaskBelowHorizon_d33765b52f084cd6b87c3a13a2bcc165_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGMaskBelowHorizon_d33ac3e6f5e84dd4bcce35755cba3be1_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGMaskBelowHorizon_f4a70ae5d0364985870dbc5ca9ffa882_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SGSingleParticle_9b74e1d945554c5ea87d3306f4178581_Texture2Dbd5b8ce37ff545e1be8d418c193ee500_3418281140:
         m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
@@ -85,7 +109,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _horizonMask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 10f62b4152000cd40bfef3f3ac6dec74, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _horizonMask_:
@@ -218,7 +242,7 @@ Material:
     - _hasFade_1: 0
     - _hasFade_2: 0
     - _horizonHeight: 0
-    - _horizonPlaneHeigth: -0.212
+    - _horizonPlaneHeigth: -0.01
     - _horizonWidth: 0
     - _isRadial00: 0
     - _isRadial01: 1
@@ -242,7 +266,7 @@ Material:
     - _lightIntensity_2: 0.467
     - _lightIntensity_3: 0.85
     - _lightIntensity_4: 1
-    - _maskSmoothness: 0.176
+    - _maskSmoothness: 0.09
     - _normalIntensity00: 0.45
     - _normalIntensity01: 0.357
     - _normalIntensity02: 0
@@ -308,7 +332,7 @@ Material:
     - _groundColor: {r: 0.082764946, g: 0.0012477125, b: 0.18885218, a: 1}
     - _horizonColor: {r: 0.35707802, g: 0.00056571484, b: 0.6041195, a: 1}
     - _horizonMaskValues: {r: 0, g: 0, b: 0, a: 0}
-    - _horizonPlaneColor: {r: 0, g: 0.0055486932, b: 0.1509434, a: 1}
+    - _horizonPlaneColor: {r: 0, g: 0.8818593, b: 1, a: 1}
     - _lightDirection: {r: 40.72383, g: 180, b: 180, a: 0}
     - _lightTint: {r: 0.13534454, g: 0.00065322215, b: 0.2827618, a: 1}
     - _particlesMainParameters_0: {r: 0, g: 0, b: 0, a: 0}
