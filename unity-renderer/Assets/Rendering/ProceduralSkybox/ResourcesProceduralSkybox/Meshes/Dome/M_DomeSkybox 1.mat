@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SGMaskBelowHorizon_80bf67a4a8384fb1b2e225fc56f561b4_Texture2Deb2aa013de1c4a479e65e87000495e42_219932305:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SGSingleParticle_9b74e1d945554c5ea87d3306f4178581_Texture2Dbd5b8ce37ff545e1be8d418c193ee500_3418281140:
         m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
@@ -66,7 +70,7 @@ Material:
     - _lightIntensity_0: 0.5
     - _normalIntensity_0: 0
     m_Colors:
-    - _HorizonPlaneColor: {r: 0.42452824, g: 0.30449164, b: 0.22628152, a: 0}
+    - _HorizonPlaneColor: {r: 0.42452818, g: 0.30449158, b: 0.22628143, a: 0}
     - _color_0: {r: 0.8962264, g: 0.016858945, b: 0, a: 1}
     - _distortIntAndSize_0: {r: 0, g: 0, b: 0, a: 0}
     - _distortSpeedAndSharp_0: {r: 0, g: 0, b: 0, a: 0}
