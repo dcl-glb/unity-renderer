@@ -109,7 +109,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _horizonMask:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: 9ce99415403c5b5449ea5a012547af44, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _horizonMask_:
@@ -266,7 +266,7 @@ Material:
     - _lightIntensity_2: 0.467
     - _lightIntensity_3: 0.85
     - _lightIntensity_4: 1
-    - _maskSmoothness: 0.1
+    - _maskSmoothness: 0.51
     - _normalIntensity00: 0.45
     - _normalIntensity01: 0.357
     - _normalIntensity02: 0
@@ -310,7 +310,7 @@ Material:
     - Vector4_0cf559245b2d4be8a1deafca41d5f1d6: {r: 1, g: 1, b: 0, a: 0}
     - Vector4_1: {r: 0.1, g: 0.1, b: 0.5, a: 0}
     - Vector4_2: {r: 1, g: 1, b: 0.5, a: 0.5}
-    - _HorizonPlaneColor: {r: 0.078431346, g: 0.07931351, b: 0.58431375, a: 0.83137256}
+    - _HorizonPlaneColor: {r: 1, g: 1, b: 1, a: 1}
     - _color00: {r: 1, g: 1, b: 1, a: 1}
     - _color01: {r: 1, g: 1, b: 1, a: 1}
     - _color02: {r: 1, g: 1, b: 1, a: 1}
@@ -331,7 +331,7 @@ Material:
     - _distortSpeedAndSharp_4: {r: 0, g: 0, b: 0, a: 0}
     - _groundColor: {r: 0.082764946, g: 0.0012477125, b: 0.18885218, a: 1}
     - _horizonColor: {r: 0.35707802, g: 0.00056571484, b: 0.6041195, a: 1}
-    - _horizonMaskValues: {r: 0.5, g: 0.5, b: -0.12, a: -0.07}
+    - _horizonMaskValues: {r: 1, g: 1, b: 0, a: 0}
     - _horizonPlaneColor: {r: 0, g: 0.8818593, b: 1, a: 1}
     - _lightDirection: {r: 40.72383, g: 180, b: 180, a: 0}
     - _lightTint: {r: 0.13534454, g: 0.00065322215, b: 0.2827618, a: 1}
@@ -375,4 +375,5 @@ Material:
     - _timeFrame_2: {r: 21, g: 5, b: 0, a: 0}
     - _timeFrame_3: {r: 20, g: 6, b: 0, a: 0}
     - _timeFrame_4: {r: 0, g: 24, b: 0, a: 0}
+    - _timeFrame_5: {r: 0, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
