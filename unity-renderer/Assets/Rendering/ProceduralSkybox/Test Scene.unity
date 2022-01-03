@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1484881, g: 0.14249256, b: 0.1822086, a: 1}
+  m_IndirectSpecularColor: {r: 0.15611114, g: 0.15078957, b: 0.19665769, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -124,12 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2705000 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f547e7e68d18b6747a091c777013b092,
-    type: 3}
-  m_PrefabInstance: {fileID: 469387051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &127179990
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,23 +812,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 418895298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff96e7af3c2231541bb3c1571051c728, type: 3}
+  m_Script: {fileID: 11500000, guid: 01ee2abf3142a4c4b94588d0d5c760d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  domeSize: 2000
+  domeSize: 200
   sizeOffset: 10
-  domesParent: {fileID: 418895298}
-  domes:
-  - {fileID: 638828327}
-  - {fileID: 2705000}
-  - {fileID: 1609286558}
-  - {fileID: 452656726}
---- !u!1 &452656726 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f547e7e68d18b6747a091c777013b092,
-    type: 3}
-  m_PrefabInstance: {fileID: 226475117}
-  m_PrefabAsset: {fileID: 0}
+  domesParent: {fileID: 0}
+  domes: []
 --- !u!1001 &469387051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,12 +1131,6 @@ Transform:
   m_Father: {fileID: 937070802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &638828327 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f547e7e68d18b6747a091c777013b092,
-    type: 3}
-  m_PrefabInstance: {fileID: 180631920}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &642491954
 GameObject:
   m_ObjectHideFlags: 0
@@ -21260,12 +21238,6 @@ Transform:
   m_Father: {fileID: 1385550705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1609286558 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f547e7e68d18b6747a091c777013b092,
-    type: 3}
-  m_PrefabInstance: {fileID: 162973855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1714877141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2e772ca06f6ba447a79eafaa4a9394f,
@@ -31006,6 +30978,56 @@ Transform:
   m_Father: {fileID: 642491955}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1909505675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1909505677}
+  - component: {fileID: 1909505676}
+  m_Layer: 0
+  m_Name: Plannar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1909505676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909505675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaed774ba5e577046bdb3a6ead765c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToSpawn:
+  - {fileID: 919132149155446097, guid: 0d530136faa00f14a8c957ce7db3da03, type: 3}
+  - {fileID: 919132149155446097, guid: b27b9878cc04b2742a66e705eff39c36, type: 3}
+  frequency: 0.5
+  speed: 10
+  distance: 100
+  width: 100
+--- !u!4 &1909505677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909505675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 12.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1980004107
 GameObject:
   m_ObjectHideFlags: 0
