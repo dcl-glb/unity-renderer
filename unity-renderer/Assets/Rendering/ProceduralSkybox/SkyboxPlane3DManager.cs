@@ -5,12 +5,19 @@ using UnityEngine;
 public class SkyboxPlane3DManager : MonoBehaviour
 {
     public List<GameObject> objectsToSpawn = new List<GameObject>();
+    public Material objectsMaterial;
+
     public float frequency;
     float currentTime;
+
+
     public float speed;
     public float distance;
 
     public float width;
+
+    public Vector3 objectsScale;
+    public Vector3 objectsRotation;
 
     List<GameObject> spawned = new List<GameObject>();
 
