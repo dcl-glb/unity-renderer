@@ -5,7 +5,6 @@ using UnityEngine;
 public class SkyboxPlane3DManager : MonoBehaviour
 {
     public List<GameObject> objectsToSpawn = new List<GameObject>();
-    public Material objectsMaterial;
 
     public float frequency;
     float currentTime;
@@ -13,6 +12,8 @@ public class SkyboxPlane3DManager : MonoBehaviour
 
     public float speed;
     public float distance;
+
+    GameObject destroyer;
 
     public float width;
 
@@ -24,10 +25,13 @@ public class SkyboxPlane3DManager : MonoBehaviour
     void Start()
     {
         currentTime = frequency;
+        SpawnDestroyer();
     }
 
     void Update()
     {
+        destroyer.transform.localPosition = new Vector3(0, 0, distance);
+
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
@@ -45,6 +49,13 @@ public class SkyboxPlane3DManager : MonoBehaviour
                 MoveObject(spawned[i]);
             }
         }
+    }
+
+    void SpawnDestroyer()
+    {
+        destroyer = new GameObject("Destroyer");
+        destroyer.transform.SetParent(transform);
+        destroyer.transform.localPosition = new Vector3(0, 0, distance);
     }
 
     void SpawnObject()
@@ -73,9 +84,10 @@ public class SkyboxPlane3DManager : MonoBehaviour
     void MoveObject(GameObject obj)
     {
         obj.transform.position += transform.forward * speed * Time.deltaTime;
+        obj.transform.rotation = Quaternion.Euler(objectsRotation);
+        obj.transform.localScale = objectsScale;
 
-
-        if(Mathf.Abs(obj.transform.position.z - (transform.forward * distance).z) <= 0.1f)
+        if (obj.transform.localPosition.z >= destroyer.transform.localPosition.z)
         {
             DestroyObject(obj);
         }

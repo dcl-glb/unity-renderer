@@ -13,10 +13,14 @@ public class SkyboxOrbital3DManager : MonoBehaviour
     Vector3[] points;
 
 
-    public Transform orbitingObj;
+    public GameObject orbitObject;
+    public Vector3 initialScale = new Vector3(1,1,1);
+
+    Transform targetTransform;
     public float orbitProgress;
     public float orbitPeriod;
-
+    
+    public bool moving;
 
     public bool lookAtOrbit;
     public Vector3 rotationSpeed;
@@ -24,17 +28,19 @@ public class SkyboxOrbital3DManager : MonoBehaviour
     void Awake()
     {
         lr = GetComponent<LineRenderer>();
+        moving = true;
     }
 
     private void Start()
     {
-        if(orbitingObj)
+        if(orbitObject)
         {
+            SpawnObject();
             SetObjectPosition();
             StartCoroutine(MoveObject());
         }
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////ORBIT
     void CalculateOrbit()
     {
         points = new Vector3[segments + 1];
@@ -50,35 +56,54 @@ public class SkyboxOrbital3DManager : MonoBehaviour
         if(lr)
         { 
             lr.positionCount = segments + 1;
-            lr.SetPositions(points);  
+            lr.SetPositions(points);
+            lr.widthMultiplier = ((orbit.xAxis + orbit.yAxis) * 0.5f) * 0.005f;
         }
     }
-
-    private void Update()
-    {
-        if(!lookAtOrbit)
-        {
-            orbitingObj.transform.Rotate(rotationSpeed * Time.deltaTime);
-        }
-    }
-
     private void FixedUpdate()
     {
         CalculateOrbit();
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////OBJECT MOVEMENT
+    private void Update()
+    {
+        if (orbitPeriod == 0f)
+        {
+            orbitPeriod = 0.01f;
+        }
+
+        if (!lookAtOrbit)
+        {
+            targetTransform.transform.Rotate(rotationSpeed * Time.deltaTime);
+        }
+    }
+
+
+    void SpawnObject()
+    {
+        GameObject newObj = Instantiate(orbitObject, transform);
+        newObj.transform.localScale = initialScale;
+        targetTransform = newObj.transform;
+    }
+
     void SetObjectPosition()
     {
+        float orbitSpeed = 1f / orbitPeriod;
+        orbitProgress += orbitSpeed * Time.deltaTime;
+        orbitProgress %= 1f;
+
+
         Vector2 orbitPos = orbit.Evaluate(orbitProgress);
 
         Vector3 finalPos = new Vector3(orbitPos.x, orbitPos.y, 0);
 
         if (lookAtOrbit)
         {
-            orbitingObj.LookAt(finalPos, orbitingObj.up);
+            targetTransform.LookAt(finalPos, targetTransform.up);
         }
 
-        orbitingObj.localPosition = finalPos;
+        targetTransform.localPosition = finalPos;
     }
 
     IEnumerator MoveObject()
@@ -88,12 +113,9 @@ public class SkyboxOrbital3DManager : MonoBehaviour
             orbitPeriod = 0.01f;
         }
 
-        float orbitSpeed = 1f / orbitPeriod;
 
-        while(true)
+        while(moving)
         {
-            orbitProgress += orbitSpeed * Time.deltaTime;
-            orbitProgress %= 1f;
             SetObjectPosition();
             yield return null;
         }
