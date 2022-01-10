@@ -20,10 +20,18 @@ public class SkyboxPlane3DManager : MonoBehaviour
     public Vector3 objectsScale;
     public Vector3 objectsRotation;
 
-    List<GameObject> spawned = new List<GameObject>();
+    List<GameObject> spawnedMoving = new List<GameObject>();
+
+
+    public bool isStatic;
+    bool prevStatic;
+
+    public int staticAmount;
+    List<GameObject> spawnedStatic = new List<GameObject>();
 
     void Start()
     {
+        prevStatic = isStatic;
         currentTime = frequency;
         SpawnDestroyer();
     }
@@ -31,24 +39,77 @@ public class SkyboxPlane3DManager : MonoBehaviour
     void Update()
     {
         destroyer.transform.localPosition = new Vector3(0, 0, distance);
+        UpdateTranform();
 
-        if (currentTime > 0)
+        if (isStatic != prevStatic)
         {
-            currentTime -= Time.deltaTime;
+            if(isStatic)
+            {
+                if (spawnedMoving.Count > 0)
+                {
+                    for(int i = spawnedMoving.Count - 1; i >= 0; i--)
+                    {
+                        DestroyObject(spawnedMoving[i], true);
+                    }
+                }
+                SpawnStatics();
+            }
+            else
+            {
+                if (spawnedStatic.Count > 0)
+                {
+                    for (int i = spawnedStatic.Count - 1; i >= 0; i--)
+                    {
+                        DestroyObject(spawnedStatic[i], false);
+                    }
+                }
+            }
+
+            prevStatic = isStatic;
+        }
+
+        if(!isStatic)
+        {
+            if (currentTime > 0)
+            {
+                currentTime -= Time.deltaTime;
+            }
+            else
+            {
+                SpawnObject();
+                currentTime = frequency;
+            }
+
+            for (int i = 0; i < spawnedMoving.Count; i++)
+            {
+                if(spawnedMoving[i])
+                {
+                    MoveObject(spawnedMoving[i]);
+                }
+            }
+        }
+    }
+
+    void UpdateTranform()
+    {
+        if(isStatic)
+        {
+            foreach (GameObject o in spawnedStatic)
+            {
+                o.transform.rotation = Quaternion.Euler(objectsRotation);
+                o.transform.localScale = objectsScale;
+            }
         }
         else
         {
-            SpawnObject();
-            currentTime = frequency;
-        }
-
-        for (int i = 0; i < spawned.Count; i++)
-        {
-            if(spawned[i])
+            foreach(GameObject o in spawnedMoving)
             {
-                MoveObject(spawned[i]);
+                o.transform.rotation = Quaternion.Euler(objectsRotation);
+                o.transform.localScale = objectsScale;
             }
         }
+
+        
     }
 
     void SpawnDestroyer()
@@ -65,7 +126,7 @@ public class SkyboxPlane3DManager : MonoBehaviour
 
 
         GameObject newObj = Instantiate(objectsToSpawn[objIndex], pos, transform.rotation, transform);
-        spawned.Add(newObj);
+        spawnedMoving.Add(newObj);
     }
 
     int SetRandomIndex()
@@ -84,18 +145,45 @@ public class SkyboxPlane3DManager : MonoBehaviour
     void MoveObject(GameObject obj)
     {
         obj.transform.position += transform.forward * speed * Time.deltaTime;
-        obj.transform.rotation = Quaternion.Euler(objectsRotation);
-        obj.transform.localScale = objectsScale;
 
         if (obj.transform.localPosition.z >= destroyer.transform.localPosition.z)
         {
-            DestroyObject(obj);
+            DestroyObject(obj, true);
         }
     }
 
-    void DestroyObject(GameObject obj)
+    void SpawnStatics()
     {
-        spawned.Remove(obj);
+        for(int i = 0; i < staticAmount; i++)
+        {
+            int index = SetRandomIndex();
+            Vector3 pos = SetRandomSpawnPoint();
+
+            GameObject newObj = Instantiate(objectsToSpawn[index], pos, transform.rotation, transform);
+            spawnedStatic.Add(newObj);
+        }
+    }
+
+    Vector3 SetRandomSpawnPoint()
+    {
+        float xPos = Random.Range(-width / 2, width / 2);
+        float yPos = transform.position.y;
+        float zPos = Random.Range(0, destroyer.transform.position.z);
+
+        return new Vector3(xPos, yPos, zPos);
+    }
+
+    void DestroyObject(GameObject obj, bool moving)
+    {
+        if(moving)
+        {
+            spawnedMoving.Remove(obj);
+        }
+        else
+        {
+            spawnedStatic.Remove(obj);
+        }
+
         Destroy(obj);
     }
 

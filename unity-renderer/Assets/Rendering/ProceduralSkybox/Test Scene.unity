@@ -11424,7 +11424,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1215424307
 Transform:
   m_ObjectHideFlags: 0
@@ -11457,7 +11457,7 @@ MonoBehaviour:
     yAxis: 10
   orbitObject: {fileID: 6263617050110807207, guid: 4b28f16fb6cf9e545b8f93b28c86634c,
     type: 3}
-  initialScale: {x: 10, y: 10, z: 10}
+  initialScale: {x: 5, y: 5, z: 5}
   orbitProgress: 0
   orbitPeriod: 3
   moving: 0
@@ -31170,6 +31170,8 @@ MonoBehaviour:
   width: 100
   objectsScale: {x: 1, y: 1, z: 1}
   objectsRotation: {x: 0, y: 0, z: 0}
+  isStatic: 0
+  staticAmount: 50
 --- !u!4 &1909505677
 Transform:
   m_ObjectHideFlags: 0

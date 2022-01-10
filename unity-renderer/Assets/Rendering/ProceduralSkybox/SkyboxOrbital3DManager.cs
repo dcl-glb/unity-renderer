@@ -100,7 +100,7 @@ public class SkyboxOrbital3DManager : MonoBehaviour
 
         if (lookAtOrbit)
         {
-            targetTransform.LookAt(finalPos, targetTransform.up);
+            targetTransform.LookAt(finalPos - targetTransform.transform.localPosition, targetTransform.up);
         }
 
         targetTransform.localPosition = finalPos;
