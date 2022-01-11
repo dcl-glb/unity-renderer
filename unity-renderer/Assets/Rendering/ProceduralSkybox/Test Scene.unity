@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14857365, g: 0.13862969, b: 0.18641923, a: 1}
+  m_IndirectSpecularColor: {r: 0.13994958, g: 0.12817922, b: 0.15717097, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11424,7 +11424,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1215424307
 Transform:
   m_ObjectHideFlags: 0
@@ -11433,7 +11433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215424306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 23.4, z: -9.26}
+  m_LocalPosition: {x: 0, y: 23.4, z: -36.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11458,11 +11458,10 @@ MonoBehaviour:
   orbitObject: {fileID: 6263617050110807207, guid: 4b28f16fb6cf9e545b8f93b28c86634c,
     type: 3}
   initialScale: {x: 5, y: 5, z: 5}
-  orbitProgress: 0
-  orbitPeriod: 3
-  moving: 0
-  lookAtOrbit: 0
+  initialRotation: {x: 0, y: 0, z: 0}
   rotationSpeed: {x: 0, y: 0, z: 0}
+  rotationT: 0
+  orbitPeriod: 3
 --- !u!120 &1215424309
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -11526,8 +11525,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 1, a: 1}
-      key1: {r: 0, g: 0, b: 1, a: 1}
+      key0: {r: 0, g: 1, b: 0, a: 1}
+      key1: {r: 0, g: 1, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -31148,7 +31147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1909505676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31162,8 +31161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - {fileID: 919132149155446097, guid: 0d530136faa00f14a8c957ce7db3da03, type: 3}
-  - {fileID: 919132149155446097, guid: b27b9878cc04b2742a66e705eff39c36, type: 3}
+  - {fileID: 7288699076941013510, guid: 109525aa5f413a14e92ce7cc32e8641d, type: 3}
+  - {fileID: 429654133452703181, guid: 728085c2cd7b0fd4995f2783b5fdf4c3, type: 3}
+  - {fileID: 7710500453120397320, guid: 021a24f65c0e672429e9b2a4d66b2c69, type: 3}
   frequency: 0.5
   speed: 10
   distance: 100
@@ -31180,7 +31180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909505675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.53, z: 0}
+  m_LocalPosition: {x: 0, y: 12.53, z: -11.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36003,7 +36003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980004107}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.97, y: 72.5, z: -16}
+  m_LocalPosition: {x: 49.4, y: 72.5, z: -34.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 642491955}

@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class SkyboxOrbital3DManager : MonoBehaviour
 {
-    LineRenderer lr;
-
     public int segments;
     public SkyboxOrbit orbit;
 
 
-    Vector3[] points;
-
-
     public GameObject orbitObject;
     public Vector3 initialScale = new Vector3(1,1,1);
+    public Vector3 initialRotation;
 
-    Transform targetTransform;
-    public float orbitProgress;
-    public float orbitPeriod;
-    
-    public bool moving;
-
-    public bool lookAtOrbit;
     public Vector3 rotationSpeed;
+    public RotationType rotationT;
+
+    LineRenderer lr;
+    Vector3[] points;
+    Transform targetTransform;
+    float orbitProgress;
+    public float orbitPeriod;
+    bool moving;
+    public enum RotationType
+    {
+        Fixed, Automatic, Orbit
+    }
 
     void Awake()
     {
@@ -72,11 +73,17 @@ public class SkyboxOrbital3DManager : MonoBehaviour
         {
             orbitPeriod = 0.01f;
         }
+        targetTransform.localScale = initialScale;
 
-        if (!lookAtOrbit)
+        if (rotationT == RotationType.Automatic)
         {
             targetTransform.transform.Rotate(rotationSpeed * Time.deltaTime);
         }
+        else if(rotationT == RotationType.Fixed)
+        {
+            targetTransform.rotation = Quaternion.Euler(initialRotation);
+        }
+
     }
 
 
@@ -84,6 +91,7 @@ public class SkyboxOrbital3DManager : MonoBehaviour
     {
         GameObject newObj = Instantiate(orbitObject, transform);
         newObj.transform.localScale = initialScale;
+        newObj.transform.rotation = Quaternion.Euler(initialRotation);
         targetTransform = newObj.transform;
     }
 
@@ -98,7 +106,7 @@ public class SkyboxOrbital3DManager : MonoBehaviour
 
         Vector3 finalPos = new Vector3(orbitPos.x, orbitPos.y, 0);
 
-        if (lookAtOrbit)
+        if (rotationT == RotationType.Orbit)
         {
             targetTransform.LookAt(finalPos - targetTransform.transform.localPosition, targetTransform.up);
         }
