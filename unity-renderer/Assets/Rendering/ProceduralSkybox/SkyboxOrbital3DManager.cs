@@ -10,17 +10,18 @@ public class SkyboxOrbital3DManager : MonoBehaviour
 
     public GameObject orbitObject;
     public Vector3 initialScale = new Vector3(1,1,1);
-    public Vector3 initialRotation;
+    public Vector3 objectRotation;
 
-    public Vector3 rotationSpeed;
     public RotationType rotationT;
 
+    public bool moving;
+    public float orbitPeriod;
+    
     LineRenderer lr;
     Vector3[] points;
     Transform targetTransform;
     float orbitProgress;
-    public float orbitPeriod;
-    bool moving;
+    bool prevMoving;
     public enum RotationType
     {
         Fixed, Automatic, Orbit
@@ -30,6 +31,7 @@ public class SkyboxOrbital3DManager : MonoBehaviour
     {
         lr = GetComponent<LineRenderer>();
         moving = true;
+        prevMoving = moving;
     }
 
     private void Start()
@@ -69,29 +71,35 @@ public class SkyboxOrbital3DManager : MonoBehaviour
     /////////////////////////////////////////////////////////////////////////////////////////////////////OBJECT MOVEMENT
     private void Update()
     {
+        if(prevMoving != moving)
+        {
+            if(moving)
+            {
+                StartCoroutine(MoveObject());
+            }
+            else
+            {
+                StopCoroutine(MoveObject());
+            }
+
+            prevMoving = moving;
+        }
+
+
         if (orbitPeriod == 0f)
         {
             orbitPeriod = 0.01f;
         }
         targetTransform.localScale = initialScale;
 
-        if (rotationT == RotationType.Automatic)
-        {
-            targetTransform.transform.Rotate(rotationSpeed * Time.deltaTime);
-        }
-        else if(rotationT == RotationType.Fixed)
-        {
-            targetTransform.rotation = Quaternion.Euler(initialRotation);
-        }
-
+        ObjectRotation();
     }
-
 
     void SpawnObject()
     {
         GameObject newObj = Instantiate(orbitObject, transform);
         newObj.transform.localScale = initialScale;
-        newObj.transform.rotation = Quaternion.Euler(initialRotation);
+        newObj.transform.rotation = Quaternion.Euler(objectRotation);
         targetTransform = newObj.transform;
     }
 
@@ -106,12 +114,24 @@ public class SkyboxOrbital3DManager : MonoBehaviour
 
         Vector3 finalPos = new Vector3(orbitPos.x, orbitPos.y, 0);
 
-        if (rotationT == RotationType.Orbit)
-        {
-            targetTransform.LookAt(finalPos - targetTransform.transform.localPosition, targetTransform.up);
-        }
-
         targetTransform.localPosition = finalPos;
+    }
+
+
+    void ObjectRotation()
+    {
+        if (rotationT == RotationType.Automatic)
+        {
+            targetTransform.transform.Rotate(objectRotation * Time.deltaTime);
+        }
+        else if (rotationT == RotationType.Fixed)
+        {
+            targetTransform.rotation = Quaternion.Euler(objectRotation);
+        }
+        else if (rotationT == RotationType.Orbit)
+        {
+            targetTransform.LookAt(transform.position, targetTransform.up);
+        }
     }
 
     IEnumerator MoveObject()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13994958, g: 0.12817922, b: 0.15717097, a: 1}
+  m_IndirectSpecularColor: {r: 0.01497027, g: 0.08712771, b: 0.1455679, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6375,7 +6375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957977619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.13, y: 838, z: -14.58}
+  m_LocalPosition: {x: 5.13, y: 100, z: -14.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1809182571}
@@ -11458,9 +11458,9 @@ MonoBehaviour:
   orbitObject: {fileID: 6263617050110807207, guid: 4b28f16fb6cf9e545b8f93b28c86634c,
     type: 3}
   initialScale: {x: 5, y: 5, z: 5}
-  initialRotation: {x: 0, y: 0, z: 0}
-  rotationSpeed: {x: 0, y: 0, z: 0}
-  rotationT: 0
+  objectRotation: {x: 0, y: 0, z: 0}
+  rotationT: 2
+  moving: 1
   orbitPeriod: 3
 --- !u!120 &1215424309
 LineRenderer:

@@ -365,7 +365,7 @@ Material:
     - _rowAndCollumns_3: {r: 0, g: 0, b: 0, a: 0}
     - _rowAndCollumns_4: {r: 0, g: 0, b: 0, a: 0}
     - _skyColor: {r: 0.13534454, g: 0.00065322215, b: 0.2827618, a: 1}
-    - _smoothRange: {r: 0, g: 0, b: 0, a: 0}
+    - _smoothRange: {r: 0, g: 0.17, b: 0, a: 0}
     - _speedAndRotation_0: {r: 0.01, g: 0, b: 0, a: 0}
     - _speedAndRotation_1: {r: 0, g: 0, b: 0, a: 0}
     - _speedAndRotation_2: {r: 0, g: 1, b: 0, a: 0}
