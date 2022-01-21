@@ -24,7 +24,7 @@ public class SkyboxOrbital3DManager : MonoBehaviour
     bool prevMoving;
     public enum RotationType
     {
-        Fixed, Automatic, Orbit
+        Fixed, LinearInterpolate, Orbit
     }
 
     void Awake()
@@ -120,7 +120,7 @@ public class SkyboxOrbital3DManager : MonoBehaviour
 
     void ObjectRotation()
     {
-        if (rotationT == RotationType.Automatic)
+        if (rotationT == RotationType.LinearInterpolate)
         {
             targetTransform.transform.Rotate(objectRotation * Time.deltaTime);
         }
