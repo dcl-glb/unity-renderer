@@ -11,6 +11,8 @@ public class ButtonStates : MonoBehaviour
     public Color colorHovered;
     public Color colorSelected;
 
+    public float hoveredScale;
+
     public ParticleSystem particles;
 
     Material mat;
@@ -22,6 +24,7 @@ public class ButtonStates : MonoBehaviour
     bool selected;
     private void Awake()
     {
+        target.material = new Material(target.material);
         mat = target.material;
         rect = target.GetComponent<RectTransform>();
         originalSize = rect.sizeDelta;
@@ -63,7 +66,7 @@ public class ButtonStates : MonoBehaviour
             mat.SetColor("_color_01", colorHovered);
             mat.SetColor("_color_02", colorHovered - offsetColor);
         }
-        rect.sizeDelta = originalSize * 1.2f;
+        rect.sizeDelta = originalSize * hoveredScale;
     }
 
     public void Exit()
