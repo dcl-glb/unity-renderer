@@ -45,7 +45,7 @@ Material:
     - ENUM_8612595F505644EE9E714E8B233B2B4C: 4
     - Vector1_48eb7f3436f14d7da6145a787a64ae05: 4
     - Vector1_639576500d6c4019b2dca32f981f42fb: 0.4
-    - Vector1_9054616d2c6b4ff39f3f2dc7f5c96568: 2
+    - Vector1_9054616d2c6b4ff39f3f2dc7f5c96568: 1
     - Vector1_be1a1471ee0f4d068eacc7ba6cc1f9ef: 0
     - Vector1_da8a001ab5534895b9549f1f8eca8ff2: 0
     m_Colors:
@@ -53,10 +53,10 @@ Material:
     - Color_c86e6079d01643098f896ef683bfab0b_1: {r: 0.7735849, g: 0.5829554, b: 0,
         a: 0}
     - Vector2_78071d9548fd41488aecf0f38a12a379: {r: 30, g: 30, b: 0, a: 0}
-    - Vector2_a0a635b163e5424795d27a546a654459: {r: 0.2, g: 0.5, b: 0, a: 0}
+    - Vector2_a0a635b163e5424795d27a546a654459: {r: 0.85, g: 0.65, b: 0, a: 0}
     - Vector2_a56409577f1640cb84ba75d573586563: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_a56409577f1640cb84ba75d573586563_1: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_f0b69a6bdbfb4da8a5d818660f08ab0c: {r: 0, g: 0.1, b: 0, a: 0}
+    - Vector2_f0b69a6bdbfb4da8a5d818660f08ab0c: {r: 0, g: 0, b: 0, a: 0}
     - _color_01: {r: 0.35, g: 0.35, b: 0.35, a: 1}
     - _color_02: {r: 0.14999999, g: 0.14999999, b: 0.14999999, a: 1}
   m_BuildTextureStacks: []

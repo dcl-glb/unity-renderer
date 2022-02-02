@@ -48,6 +48,6 @@ Material:
     - Vector2_a0a635b163e5424795d27a546a654459: {r: 0.5, g: 0.5, b: 0, a: 0}
     - Vector2_f0b69a6bdbfb4da8a5d818660f08ab0c: {r: 6, g: 2, b: 0, a: 0}
     - Vector2_f0b69a6bdbfb4da8a5d818660f08ab0c_1: {r: 9, g: 5, b: 0, a: 0}
-    - _color_01: {r: 0.15, g: 0.15, b: 0.15, a: 0}
+    - _color_01: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
     - _color_02: {r: 0.1, g: 0.1, b: 0.1, a: 0}
   m_BuildTextureStacks: []

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Override_Button_Legendary
+  m_Controller: {fileID: 9100000, guid: ef70654c1fe06f847aa3688422557218, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 1863075073296027118, guid: ef70654c1fe06f847aa3688422557218,
+      type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9ad871dc11c8e0e49a899f999b62491f, type: 2}
+  - m_OriginalClip: {fileID: 757131446124115430, guid: ef70654c1fe06f847aa3688422557218,
+      type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e04e87ca6710f5d40bd68d0fa725c245, type: 2}
+  - m_OriginalClip: {fileID: 8311831502901829584, guid: ef70654c1fe06f847aa3688422557218,
+      type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 38899077f563b8a4dbd348d7bcde51dc, type: 2}
+  - m_OriginalClip: {fileID: -5066013261118910036, guid: ef70654c1fe06f847aa3688422557218,
+      type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 771f37ce9412fc34e82bfdf0f42e0a0e, type: 2}
