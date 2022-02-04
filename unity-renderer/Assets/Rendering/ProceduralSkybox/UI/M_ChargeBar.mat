@@ -7,23 +7,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_UIBlur
-  m_Shader: {fileID: -6465566751694194690, guid: b3293125e33882c4d9d428dceded18bb,
+  m_Name: M_ChargeBar
+  m_Shader: {fileID: -6465566751694194690, guid: b7a5683e3e500a44bb90bcc91a888def,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_21e17db94b5f4938ad97213784876242:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,11 +37,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_550964d50cd8402785faba5b1f5ca0b2: 64
-    - Vector1_770f7ae9b4414670b52e9d7b5be779ba: 0
-    - Vector1_824a5b6991434fcca2a0135428faeac0: 0.1
-    - Vector1_988dfd6c622d4674a92ef290993f60ec: 1
-    - Vector1_ee0aba070f8c4e19ba0aae9673f758fc: 0.004
+    - Vector1_0e56f9e08ecc4d168e49d8ff9881124e: 0
+    - Vector1_1b00b7fd8ccc4fc6b3e713ce90cbb93e: 10
+    - Vector1_3862b5470ce94ed68d6ccd8d5aa57614: 0.309
+    - Vector1_3a75f153191c4583b7670773a5d97393: 2
+    - Vector1_6c58d64ea1cf4d6690244fdaf86bd615: -1
+    - Vector1_fe7b327104714621a2ac5ad8c6f92d7b: 1
     m_Colors:
-    - Color_7ff22cc0c11843278fdf39a9f40a9c10: {r: 0, g: 0, b: 0, a: 1}
+    - Color_80b3604e6ba44946a43c678e0e7394af: {r: 1, g: 0, b: 0.24144793, a: 1}
+    - Color_989feb42c0074e3caa405393ba881f21: {r: 0.9529412, g: 0.46425298, b: 0,
+        a: 1}
   m_BuildTextureStacks: []
