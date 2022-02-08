@@ -20,7 +20,8 @@ public class GaussianBlurHandler : ScriptableRendererFeature
 
         public string targetName = "_blurTexture";
     }
-
+    
+    [SerializeField]
     public GaussianBlurSettings settings = new GaussianBlurSettings();
     public class GaussianBlurPass : ScriptableRenderPass
     {

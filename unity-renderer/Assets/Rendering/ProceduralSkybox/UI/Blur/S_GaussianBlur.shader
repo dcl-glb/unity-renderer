@@ -3,6 +3,7 @@ Shader "Custom/RenderFeature/S_GaussianBlur"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _color ("Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -32,6 +33,7 @@ Shader "Custom/RenderFeature/S_GaussianBlur"
             float4 _MainTex_TexelSize;
             float4 _MainTex_ST;
             float _offset;
+            float4 _color;
 
             v2f vert (appdata v)
             {
@@ -53,7 +55,8 @@ Shader "Custom/RenderFeature/S_GaussianBlur"
                 col.rgb += tex2D( _MainTex, input.uv + float2( -i, i ) * res ).rgb;
                 col.rgb += tex2D( _MainTex, input.uv + float2( -i, -i ) * res ).rgb;
                 col.rgb /= 5.0f;
-                
+                col.rgb += _color.rgb;
+
                 return col;
             }
             ENDCG
