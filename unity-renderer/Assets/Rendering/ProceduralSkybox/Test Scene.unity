@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.01758086, g: 0.08647722, b: 0.18225385, a: 1}
+  m_IndirectSpecularColor: {r: 0.016706605, g: 0.09038145, b: 0.18566339, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6060,7 +6060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &249892555
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6213,7 +6213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &332836727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48199,6 +48199,7 @@ GameObject:
   - component: {fileID: 1465507611}
   - component: {fileID: 1465507610}
   - component: {fileID: 1465507612}
+  - component: {fileID: 1465507613}
   m_Layer: 5
   m_Name: Blur
   m_TagString: Untagged
@@ -48280,6 +48281,25 @@ MonoBehaviour:
   passes: 8
   downsampling: 5
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!95 &1465507613
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465507608}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d71a629cd516d7346bc9f8a6b9932f3e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1479102195
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class BlurController : MonoBehaviour
 
     public Color color;
 
+    bool windowOpen = true;
 
     private void Awake()
     {
@@ -33,6 +34,27 @@ public class BlurController : MonoBehaviour
             blurFeature.settings.downsample = downsampling;
             blurFeature.settings.blurMaterial.SetColor("_color", color);
             rendererData.SetDirty();
+        }
+
+        CheckInput();
+    }
+
+    void CheckInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Animator anim = GetComponent<Animator>();
+
+            if(windowOpen)
+            {
+                anim.SetTrigger("Close");
+                windowOpen = false;
+            }
+            else
+            {
+                anim.SetTrigger("Open");
+                windowOpen = true;
+            }
         }
     }
 }
