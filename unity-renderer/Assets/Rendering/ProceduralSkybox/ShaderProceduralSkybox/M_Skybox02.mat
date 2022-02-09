@@ -113,7 +113,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _cubemap_4:
-        m_Texture: {fileID: 8900000, guid: 0c23fc5f34d030f4ba053bb8b68c2860, type: 3}
+        m_Texture: {fileID: 8900000, guid: 2a1f2c34a6bb71040aad59820a39f105, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _horizonMask:
@@ -331,7 +331,7 @@ Material:
     - _color_1: {r: 12.240496, g: 13.319198, b: 23.266697, a: 0}
     - _color_2: {r: 1, g: 1, b: 1, a: 1}
     - _color_3: {r: 1, g: 1, b: 1, a: 0}
-    - _color_4: {r: 1, g: 1, b: 1, a: 0}
+    - _color_4: {r: 1, g: 1, b: 1, a: 1}
     - _distortIntAndSize_0: {r: 0, g: 0, b: 0, a: 0}
     - _distortIntAndSize_1: {r: 0, g: 0, b: 0, a: 0}
     - _distortIntAndSize_2: {r: 0, g: 0, b: 0, a: 0}
@@ -365,7 +365,7 @@ Material:
     - _rowAndCollumns_3: {r: 0, g: 0, b: 0, a: 0}
     - _rowAndCollumns_4: {r: 0, g: 0, b: 0, a: 0}
     - _skyColor: {r: 0.13534454, g: 0.00065322215, b: 0.2827618, a: 1}
-    - _smoothRange: {r: 0, g: 0.17, b: 0, a: 0}
+    - _smoothRange: {r: 0, g: 0.1, b: 0, a: 0}
     - _speedAndRotation_0: {r: 0, g: 0, b: 0, a: 0}
     - _speedAndRotation_1: {r: 0, g: 0, b: 0, a: 0}
     - _speedAndRotation_2: {r: 0, g: 1, b: 0, a: 0}
@@ -381,7 +381,7 @@ Material:
     - _tilingAndOffset_1: {r: 2, g: 2, b: 0, a: 0}
     - _tilingAndOffset_2: {r: 0, g: 0, b: 0, a: 0}
     - _tilingAndOffset_3: {r: 0, g: 0, b: 0, a: 0}
-    - _tilingAndOffset_4: {r: 0, g: 0, b: 0, a: 0}
+    - _tilingAndOffset_4: {r: 1, g: 1, b: 0, a: 0}
     - _timeFrame00: {r: 0, g: 10, b: 0, a: 0}
     - _timeFrame01: {r: 9, g: 16, b: 0, a: 0}
     - _timeFrame02: {r: 16, g: 24, b: 0, a: 0}
