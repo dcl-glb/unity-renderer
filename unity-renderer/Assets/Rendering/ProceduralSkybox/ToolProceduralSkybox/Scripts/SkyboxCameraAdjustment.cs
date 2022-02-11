@@ -23,7 +23,14 @@ public class SkyboxCameraAdjustment : MonoBehaviour
             AdjustMainCamera();
             return;
         }
+    }
 
+    private void LateUpdate()
+    {
+        if (Camera.main == null || !initialized)
+        {
+            return;
+        }
         ChangeCameraRotation();
     }
 
