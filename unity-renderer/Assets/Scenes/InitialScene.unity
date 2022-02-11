@@ -258,6 +258,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0db487de75a015458ccb53015bf8d98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0db487de75a015458ccb53015bf8d98, type: 3}
 --- !u!1 &1140639924 stripped
@@ -358,7 +363,7 @@ GameObject:
   - component: {fileID: 1473997427}
   - component: {fileID: 1473997425}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Skybox Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
