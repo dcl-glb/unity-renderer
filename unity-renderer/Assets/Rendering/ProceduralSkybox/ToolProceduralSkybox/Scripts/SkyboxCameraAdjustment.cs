@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SkyboxCameraAdjustment : MonoBehaviour
 {
@@ -22,9 +23,14 @@ public class SkyboxCameraAdjustment : MonoBehaviour
     void AdjustMainCamera()
     {
         Camera mainCam = Camera.main;
+        var cameraData = mainCam.GetUniversalAdditionalCameraData();
+        cameraData.renderType = CameraRenderType.Overlay;
+
+        var skyBoxCamData = skyboxCamera.GetUniversalAdditionalCameraData();
+        skyBoxCamData.cameraStack.Add(mainCam);
 
         //mainCam.cullingMask = mainCam.cullingMask & ~(1 << skyboxLayer);
-        mainCam.clearFlags = CameraClearFlags.Nothing;
+        //mainCam.clearFlags = CameraClearFlags.Nothing;
         initialized = true;
     }
 }
