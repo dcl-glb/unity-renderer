@@ -13,11 +13,23 @@ public class SkyboxCameraAdjustment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (initialized || Camera.main == null)
+        if (Camera.main == null)
         {
             return;
         }
-        AdjustMainCamera();
+
+        if (!initialized)
+        {
+            AdjustMainCamera();
+            return;
+        }
+
+        ChangeCameraRotation();
+    }
+
+    void ChangeCameraRotation()
+    {
+        skyboxCamera.transform.rotation = Camera.main.transform.rotation;
     }
 
     void AdjustMainCamera()
