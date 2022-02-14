@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 462289933}
   - component: {fileID: 462289935}
   - component: {fileID: 462289934}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: GroundVisual (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 1131371587}
   - component: {fileID: 1131371589}
   - component: {fileID: 1131371588}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: GroundVisual (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 1291478474}
   - component: {fileID: 1291478476}
   - component: {fileID: 1291478475}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: GroundVisual (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 2912245422350010735}
   - component: {fileID: 8022940412781161115}
   - component: {fileID: 4007333898531908127}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: GroundVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
