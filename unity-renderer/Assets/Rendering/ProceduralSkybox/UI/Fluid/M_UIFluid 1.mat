@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_UIFluid
+  m_Name: M_UIFluid 1
   m_Shader: {fileID: -6465566751694194690, guid: 5dd6c9a559795834797b7af91533700d,
     type: 3}
   m_ShaderKeywords: 
@@ -61,8 +61,8 @@ Material:
     - Vector1_b5f27ac827b742049764ce075b8f8098: 30
     - Vector1_b784a017fc7a4e46b02922c19fbaeb1a: 10
     m_Colors:
-    - Color_1: {r: 0.7924528, g: 0.5625667, b: 0.13082945, a: 1}
-    - Color_4a88c514f3824e8c97da83374e705eca: {r: 0.9339623, g: 0.72747785, b: 0.118948035,
+    - Color_1: {r: 0.74300003, g: 0.74300003, b: 0.74300003, a: 1}
+    - Color_4a88c514f3824e8c97da83374e705eca: {r: 0.90099996, g: 0.90099996, b: 0.90099996,
         a: 1}
     - Color_7297fc68055c4807bc0429105c8a5414: {r: 2.9960785, g: 2.9960785, b: 2.9960785,
         a: 0}

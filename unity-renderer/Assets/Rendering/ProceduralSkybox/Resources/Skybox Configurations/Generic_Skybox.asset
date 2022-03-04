@@ -1077,7 +1077,7 @@ MonoBehaviour:
     layers: []
   layers:
   - slotID: 0
-    renderType: 0
+    renderType: 2
     layerType: 1
     enabled: 1
     nameInEditor: Stars
@@ -1157,7 +1157,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   - slotID: 0
-    renderType: 1
+    renderType: 3
     layerType: 2
     enabled: 1
     nameInEditor: Big Sun
@@ -1245,7 +1245,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 1
   - slotID: 1
-    renderType: 1
+    renderType: 0
     layerType: 2
     enabled: 1
     nameInEditor: Second Sun
@@ -1327,7 +1327,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 1
   - slotID: 1
-    renderType: 0
+    renderType: 1
     layerType: 2
     enabled: 1
     nameInEditor: Moon
@@ -1413,7 +1413,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 1
   - slotID: 2
-    renderType: 1
+    renderType: 0
     layerType: 4
     enabled: 1
     nameInEditor: Clouds Day
@@ -1493,7 +1493,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   - slotID: 3
-    renderType: 0
+    renderType: 1
     layerType: 4
     enabled: 1
     nameInEditor: Clouds Night
@@ -1567,7 +1567,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   - slotID: 2
-    renderType: 0
+    renderType: 1
     layerType: 4
     enabled: 1
     nameInEditor: Top Clouds Night
@@ -1647,7 +1647,7 @@ MonoBehaviour:
     movementTypePlanar_Radial: 0
     movementTypeSatellite: 0
   - slotID: 3
-    renderType: 1
+    renderType: 0
     layerType: 4
     enabled: 1
     nameInEditor: Top Clouds Day

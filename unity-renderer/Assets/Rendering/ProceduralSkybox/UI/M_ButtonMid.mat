@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_ButtonTop
+  m_Name: M_ButtonMid
   m_Shader: {fileID: -6465566751694194690, guid: 9846bc099f80eb0428c59823969b4f57,
     type: 3}
   m_ShaderKeywords: ENUM_8612595F505644EE9E714E8B233B2B4C_GRID
@@ -48,7 +48,7 @@ Material:
     - Vector1_9054616d2c6b4ff39f3f2dc7f5c96568: 1
     - Vector1_be1a1471ee0f4d068eacc7ba6cc1f9ef: 0
     - Vector1_da8a001ab5534895b9549f1f8eca8ff2: 0
-    - _amount: 1
+    - _amount: 2
     - _rotation: 0
     m_Colors:
     - Color_c86e6079d01643098f896ef683bfab0b: {r: 1, g: 0.8144701, b: 0, a: 0}
@@ -59,8 +59,8 @@ Material:
     - Vector2_a56409577f1640cb84ba75d573586563: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_a56409577f1640cb84ba75d573586563_1: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_f0b69a6bdbfb4da8a5d818660f08ab0c: {r: 0, g: 0, b: 0, a: 0}
-    - _color_01: {r: 0.35, g: 0.35, b: 0.35, a: 1}
-    - _color_02: {r: 0.14999999, g: 0.14999999, b: 0.14999999, a: 1}
-    - _gridSize: {r: 0, g: 0, b: 0, a: 0}
+    - _color_01: {r: 1, g: 0.30571663, b: 0, a: 1}
+    - _color_02: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+    - _gridSize: {r: 1, g: 0.1, b: 0, a: 0}
     - _speed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -50,9 +50,9 @@ public class UIDrawFluid : MonoBehaviour
         _rt = new RenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGBFloat); 
         
         _finalMaterial = GetComponent<Image>().material;
-        _finalMaterial.SetTexture("_MainTex", _rt);
+        _finalMaterial.SetTexture("_Mask", _rt);
 
-        _rt = (RenderTexture)_finalMaterial.GetTexture("_MainTex");
+        _rt = (RenderTexture)_finalMaterial.GetTexture("_Mask");
 
         _currentTimer = _maxTimer;
     }
@@ -83,7 +83,7 @@ public class UIDrawFluid : MonoBehaviour
                 Graphics.Blit(temp, _rt);
                 //Graphics.Blit(temp, _sm, _drawMaterial);
 
-                _finalMaterial.SetTexture("_MainTex", _rt);
+                _finalMaterial.SetTexture("_Mask", _rt);
 
                 temp.Release();
 
@@ -110,7 +110,7 @@ public class UIDrawFluid : MonoBehaviour
             Graphics.Blit(eraseTemp, _rt);
             //Graphics.Blit(temp, _sm, _drawMaterial);
 
-            _finalMaterial.SetTexture("_MainTex", _rt);
+            _finalMaterial.SetTexture("_Mask", _rt);
 
             eraseTemp.Release();
         }
