@@ -1,38 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class UIDrawFluid : MonoBehaviour
+public class UIDrawManager : MonoBehaviour
 {
-    [HideInInspector]
+    public UIDrawFluid[] fluidDraws;
+
     public Shader drawShader;
 
-    [HideInInspector]
+    [Range(0.01f, 500f)]
     public float brushSize = 50;
 
-    [HideInInspector]
+    [Range(0f, 50f)]
     public float brushHardness = 1;
-    [HideInInspector]
+
     public float brushSpacing = 1f;
 
-    [HideInInspector]
+    [Range(0.01f, 500f)]
     public float eraserSize = 50;
 
-    [HideInInspector]
+    [Range(0f, 50f)]
     public float eraserHardness = 1;
+
 
     Material _drawMaterial;
     Material _eraseMaterial;
-    [HideInInspector]
-    public Material _finalMaterial;
 
     RenderTexture _rt;
-
-    [HideInInspector]
-    public bool _isPainting;
-
 
     Vector2 _prevPos;
     Vector2 _currentPos;
@@ -41,35 +35,71 @@ public class UIDrawFluid : MonoBehaviour
 
     float _currentTimer;
     float _maxTimer = 1f;
-    void Awake()
+
+
+    private void Awake()
     {
-        /*_drawMaterial = new Material(drawShader);
+        fluidDraws = GetComponentsInChildren<UIDrawFluid>();
+
+        foreach(UIDrawFluid f in fluidDraws)
+        {
+            f.drawShader = drawShader;
+            f.brushSize = brushSize;
+            f.brushHardness = brushHardness;
+            f.brushSpacing = brushSpacing;
+            f.eraserSize = eraserSize;
+            f.eraserHardness = eraserHardness;
+        }
+
+       _drawMaterial = new Material(drawShader);
         _drawMaterial.SetColor("_Color", Color.red);
 
         _eraseMaterial = new Material(drawShader);
         _eraseMaterial.SetColor("_Color", new Color(-1, 0, 0, 0));//Color.black) ;
 
-        _rt = new RenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGBFloat); */
-        
-        _finalMaterial = GetComponent<Image>().material;
-        _finalMaterial.SetTexture("_Mask", _rt);
-
-        /*_rt = (RenderTexture)_finalMaterial.GetTexture("_Mask");
-
-        _currentTimer = _maxTimer;*/
+        _rt = new RenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGBFloat);
+        _currentTimer = _maxTimer;
     }
 
+    private void Start()
+    {
+        foreach (UIDrawFluid f in fluidDraws)
+        {
+            f._finalMaterial.SetTexture("_Mask", _rt);
+        }
+    }
 
-    /*void Update()
+    private void FixedUpdate()
+    {
+        foreach (UIDrawFluid f in fluidDraws)
+        {
+            f.brushSize = brushSize;
+            f.brushHardness = brushHardness;
+            f.brushSpacing = brushSpacing;
+            f.eraserSize = eraserSize;
+            f.eraserHardness = eraserHardness;
+        }
+    }
+
+    private void Update()
     {
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
 
-        if (_isPainting)
+        float counter = 0;
+        foreach (UIDrawFluid f in fluidDraws)
+        {
+            if (f._isPainting)
+            {
+                counter ++;
+            }
+        }
+
+        if (counter > 0)
         {
             _currentPos = Input.mousePosition;
 
-            if(Vector2.Distance(_currentPos, _prevPos) > brushSpacing)
+            if (Vector2.Distance(_currentPos, _prevPos) > brushSpacing)
             {
                 Debug.Log("Painting");
 
@@ -85,19 +115,19 @@ public class UIDrawFluid : MonoBehaviour
                 Graphics.Blit(temp, _rt);
                 //Graphics.Blit(temp, _sm, _drawMaterial);
 
-                _finalMaterial.SetTexture("_Mask", _rt);
+                //_finalMaterial.SetTexture("_Mask", _rt);
 
                 temp.Release();
 
                 _mouseBuffer.Enqueue(mousePos);
             }
         }
-        
+
         if (_currentTimer >= 0)
         {
             _currentTimer -= Time.deltaTime;
         }
-        else if(_mouseBuffer.Count > 0)
+        else if (_mouseBuffer.Count > 0)
         {
             print("Erasing");
 
@@ -112,7 +142,7 @@ public class UIDrawFluid : MonoBehaviour
             Graphics.Blit(eraseTemp, _rt);
             //Graphics.Blit(temp, _sm, _drawMaterial);
 
-            _finalMaterial.SetTexture("_Mask", _rt);
+            //_finalMaterial.SetTexture("_Mask", _rt);
 
             eraseTemp.Release();
         }
@@ -122,13 +152,9 @@ public class UIDrawFluid : MonoBehaviour
             _currentTimer = _maxTimer;
         }
     }
+
     private void LateUpdate()
     {
         _prevPos = Input.mousePosition;
-    }*/
-
-    public void TogglePaint(bool value)
-    {
-        _isPainting = value;
     }
 }

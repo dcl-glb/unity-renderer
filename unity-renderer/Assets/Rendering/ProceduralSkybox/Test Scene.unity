@@ -6370,8 +6370,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 470, y: 49}
-  m_SizeDelta: {x: 1000, y: 925}
+  m_AnchoredPosition: {x: 470, y: 0}
+  m_SizeDelta: {x: 1000, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249892556
 MonoBehaviour:
@@ -12053,11 +12053,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawShader: {fileID: -6465566751694194690, guid: 9259b1c318b7cc542878a0cd51bdb56f,
     type: 3}
-  brushSize: 75
-  brushHardness: 2
+  brushSize: 100
+  brushHardness: 0.05
   brushSpacing: 1
-  eraserSize: 30
+  eraserSize: 10
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!1 &439967846
 GameObject:
   m_ObjectHideFlags: 0
@@ -17787,6 +17789,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 40
   eraserHardness: 50
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &576946127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33262,6 +33266,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 30
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &741734521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38681,6 +38687,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 30
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &797070819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70113,11 +70121,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawShader: {fileID: -6465566751694194690, guid: 9259b1c318b7cc542878a0cd51bdb56f,
     type: 3}
-  brushSize: 75
-  brushHardness: 2
+  brushSize: 100
+  brushHardness: 0.05
   brushSpacing: 1
-  eraserSize: 30
+  eraserSize: 10
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!1 &1259848855
 GameObject:
   m_ObjectHideFlags: 0
@@ -75717,6 +75727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394627814}
   - component: {fileID: 1394627815}
+  - component: {fileID: 1394627816}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -75752,7 +75763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: 75}
+  m_AnchoredPosition: {x: 15, y: 150}
   m_SizeDelta: {x: 900, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394627815
@@ -75779,6 +75790,26 @@ MonoBehaviour:
   m_Spacing: {x: 33.3, y: 33.3}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1394627816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394627813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb210afa642f2bb4294815279a128281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fluidDraws: []
+  drawShader: {fileID: -6465566751694194690, guid: 9259b1c318b7cc542878a0cd51bdb56f,
+    type: 3}
+  brushSize: 50
+  brushHardness: 1
+  brushSpacing: 1
+  eraserSize: 10
+  eraserHardness: 10
 --- !u!1 &1441996287
 GameObject:
   m_ObjectHideFlags: 0
@@ -81245,6 +81276,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 30
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &1503153541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86448,6 +86481,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 30
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &1670013837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91557,11 +91592,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawShader: {fileID: -6465566751694194690, guid: 9259b1c318b7cc542878a0cd51bdb56f,
     type: 3}
-  brushSize: 75
-  brushHardness: 2
+  brushSize: 100
+  brushHardness: 0.05
   brushSpacing: 1
-  eraserSize: 30
+  eraserSize: 10
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!1 &1714617825
 GameObject:
   m_ObjectHideFlags: 0
@@ -112031,6 +112068,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 30
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &1941044378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117344,6 +117383,8 @@ MonoBehaviour:
   brushSpacing: 1
   eraserSize: 30
   eraserHardness: 5
+  _finalMaterial: {fileID: 0}
+  _isPainting: 0
 --- !u!114 &2040193089
 MonoBehaviour:
   m_ObjectHideFlags: 0
