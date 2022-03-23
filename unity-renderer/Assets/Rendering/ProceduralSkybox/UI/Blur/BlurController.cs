@@ -18,8 +18,6 @@ public class BlurController : MonoBehaviour
 
     public Color color;
 
-    bool windowOpen = true;
-
     private void Awake()
     {
         feature = rendererData.rendererFeatures.Where((f) => f.name == featureName).FirstOrDefault();
@@ -35,26 +33,9 @@ public class BlurController : MonoBehaviour
             blurFeature.settings.blurMaterial.SetColor("_color", color);
             rendererData.SetDirty();
         }
-
-        CheckInput();
-    }
-
-    void CheckInput()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
+        else
         {
-            Animator anim = GetComponent<Animator>();
-
-            if(windowOpen)
-            {
-                anim.SetTrigger("Close");
-                windowOpen = false;
-            }
-            else
-            {
-                anim.SetTrigger("Open");
-                windowOpen = true;
-            }
+            feature = rendererData.rendererFeatures.Where((f) => f.name == featureName).FirstOrDefault();
         }
     }
 }

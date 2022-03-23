@@ -38,8 +38,8 @@ MonoBehaviour:
   settings:
     renderPassEvent: 500
     blurMaterial: {fileID: 2100000, guid: bd6d8afd42d202a4fb9db5a6ef1b377a, type: 2}
-    blurPasses: 8
-    downsample: 5
+    blurPasses: 4
+    downsample: 4
     targetName: _blurTexture
 --- !u!114 &-981180908113067146
 MonoBehaviour:
@@ -76,9 +76,9 @@ MonoBehaviour:
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: -7551554940414059620}
   - {fileID: -2096522871545126809}
-  m_RendererFeatureMap: 9c1bc6a2ca7c3397672012628ea7e7e2
+  - {fileID: -7551554940414059620}
+  m_RendererFeatureMap: 672012628ea7e7e29c1bc6a2ca7c3397
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:

@@ -28,6 +28,54 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_0b4e189730a04fc7b1308c71563b4e75_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_127559b695da486ba651c77b6cabd794_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_1c30db12cdc644fbb73f8792d7c5c70a_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_1c475a0cbf0f432a8eae685bba283c98_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_44c606da691f4c938eea309eb45d4a8e_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_575b8a3ae4864c06a14b610c0bcf2012_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_610277b4bb0d42398616d5bf23b01b11_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_b3b58dd933184217a94b1bafd7dc2e02_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_ba7114fa5b024c8ab387621304d485a2_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_bdbb6bdd6f3540f8a5711d359c66ff87_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGBlurLoop_c4c7be9c5e534c2aacef876da6928198_Texture2Dc08b63e639e94a2ea17803fb53ef3313_215215027:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGUIImageBlurSingle_e147e94b92704c549d5b0cb034ce8d6f_Texture2D62c7bdd1452c4b3e97cf3c8670dca0cf_1431055760:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,7 +89,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_550964d50cd8402785faba5b1f5ca0b2: 24
+    - Vector1_550964d50cd8402785faba5b1f5ca0b2: 10
     - Vector1_770f7ae9b4414670b52e9d7b5be779ba: 1
     - Vector1_824a5b6991434fcca2a0135428faeac0: 0.1
     - Vector1_988dfd6c622d4674a92ef290993f60ec: 1

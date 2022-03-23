@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_UIFluid
+  m_Name: M_UIFluid01
   m_Shader: {fileID: -6465566751694194690, guid: 5dd6c9a559795834797b7af91533700d,
     type: 3}
   m_ShaderKeywords: 
@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Opacity:
+        m_Texture: {fileID: 2800000, guid: b01bb67eac45b4ce4b289efdfb7c1847, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,10 +65,10 @@ Material:
     - Vector1_b5f27ac827b742049764ce075b8f8098: 30
     - Vector1_b784a017fc7a4e46b02922c19fbaeb1a: 10
     m_Colors:
-    - Color_1: {r: 0.7924528, g: 0.5625667, b: 0.13082945, a: 1}
-    - Color_4a88c514f3824e8c97da83374e705eca: {r: 0.9339623, g: 0.72747785, b: 0.118948035,
+    - Color_1: {r: 0.511, g: 0.22890444, b: 0.13030499, a: 1}
+    - Color_4a88c514f3824e8c97da83374e705eca: {r: 0.617, g: 0.3797702, b: 0.24926803,
         a: 1}
-    - Color_7297fc68055c4807bc0429105c8a5414: {r: 2.9960785, g: 2.9960785, b: 2.9960785,
+    - Color_7297fc68055c4807bc0429105c8a5414: {r: 0.73379004, g: 0.73379004, b: 0.73379004,
         a: 0}
     - Vector2_1cd5f6cbdff34636a4ca2eae131b9f05: {r: -0.5, g: 0, b: 0, a: 0}
     - Vector2_23815f6122c24c8e8fd766bf2ee6986e: {r: 8, g: 4, b: 0, a: 0}
