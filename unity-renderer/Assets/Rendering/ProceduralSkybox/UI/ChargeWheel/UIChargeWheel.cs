@@ -33,13 +33,13 @@ public class UIChargeWheel : MonoBehaviour
         if (head < 1)
         {
             head += tempSpeedH * Time.deltaTime;
-
+            head = Mathf.Clamp01(head);
             _mat.SetFloat("_fillHead", head);
         }
         else if(tail < 1)
         {
             tail += tempSpeedT * Time.deltaTime;
-
+            tail = Mathf.Clamp01(tail);
             _mat.SetFloat("_fillTail", tail);
         }
         else

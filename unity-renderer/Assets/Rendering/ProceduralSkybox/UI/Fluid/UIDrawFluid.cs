@@ -43,24 +43,24 @@ public class UIDrawFluid : MonoBehaviour
     float _maxTimer = 1f;
     void Awake()
     {
-        /*_drawMaterial = new Material(drawShader);
+        _drawMaterial = new Material(drawShader);
         _drawMaterial.SetColor("_Color", Color.red);
 
         _eraseMaterial = new Material(drawShader);
-        _eraseMaterial.SetColor("_Color", new Color(-1, 0, 0, 0));//Color.black) ;
+        _eraseMaterial.SetColor("_Color", new Color(-1, 0, 0, 0));
 
-        _rt = new RenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGBFloat); */
+        _rt = new RenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGBFloat);
         
         _finalMaterial = GetComponent<Image>().material;
         _finalMaterial.SetTexture("_Mask", _rt);
 
-        /*_rt = (RenderTexture)_finalMaterial.GetTexture("_Mask");
+        _rt = (RenderTexture)_finalMaterial.GetTexture("_Mask");
 
-        _currentTimer = _maxTimer;*/
+        _currentTimer = _maxTimer;
     }
 
 
-    /*void Update()
+    void Update()
     {
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
@@ -125,7 +125,7 @@ public class UIDrawFluid : MonoBehaviour
     private void LateUpdate()
     {
         _prevPos = Input.mousePosition;
-    }*/
+    }
 
     public void TogglePaint(bool value)
     {

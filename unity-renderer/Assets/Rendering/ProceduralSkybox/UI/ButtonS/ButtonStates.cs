@@ -59,8 +59,6 @@ public class ButtonStates : MonoBehaviour
 
     public void Over()
     {
-        Debug.Log("Over");
-
         if (!selected)
         {
             mat.SetColor("_color_01", colorHovered);
@@ -71,8 +69,6 @@ public class ButtonStates : MonoBehaviour
 
     public void Exit()
     {
-        Debug.Log("Exit");
-
         if(!selected)
         {
             mat.SetColor("_color_01", colorBase);
