@@ -37,7 +37,7 @@ public class UIAutoScroll : MonoBehaviour
 
     void ResetPosition()
     {
-        if (Mathf.Abs(endPos.y - Camera.main.WorldToViewportPoint(elements[0].position).y) <= 0.01f)
+        if (Mathf.Abs(endPos.y - Camera.main.WorldToViewportPoint(elements[0].position).y) <= 0.05f)
         {
             Transform tempTransform = elements[0];
             elements.Remove(tempTransform);
