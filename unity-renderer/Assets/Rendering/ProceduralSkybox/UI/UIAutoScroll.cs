@@ -6,18 +6,24 @@ using System.Linq;
 
 public class UIAutoScroll : MonoBehaviour
 {
-    public float speed;
+    public Camera UICam;
+    public GameObject originalText;
+    public Vector2 speed;
 
     List<Transform> elements = new List<Transform>();
 
     public Vector2 endPos;
+    Vector3 _originalPos;
 
     void Start()
     {
-        elements = GetComponentsInChildren<Transform>().ToList<Transform>();
-        elements.Remove(elements[0]);
+        _originalPos = originalText.transform.position;
+        elements.Add(originalText.transform);
 
-        //endPos = new Vector2(0, -Camera.main.WorldToViewportPoint(elements[1].position).y);
+        GameObject newText = Instantiate(originalText, originalText.transform.position, originalText.transform.rotation, originalText.transform.parent);
+        newText.transform.position += new Vector3(-endPos.x, -endPos.y, 0);
+
+        elements.Add(newText.transform);
     }
 
     
@@ -31,20 +37,28 @@ public class UIAutoScroll : MonoBehaviour
     {
         foreach(Transform t in elements)
         {
-            t.position += transform.up * speed * Time.deltaTime;
+            t.position += transform.right * speed.x * Time.deltaTime;
+            t.position += transform.up * speed.y * Time.deltaTime;
         }
     }
 
     void ResetPosition()
     {
-        if (Mathf.Abs(endPos.y - Camera.main.WorldToViewportPoint(elements[0].position).y) <= 0.05f)
+        if (Mathf.Abs(endPos.y - elements[0].position.y) <= 0.05f ||
+            Mathf.Abs(endPos.x - elements[0].position.x) <= 0.05f)
         {
             Transform tempTransform = elements[0];
             elements.Remove(tempTransform);
-            tempTransform.position = new Vector3(tempTransform.position.x, -endPos.y, tempTransform.position.z);
+            tempTransform.position = _originalPos;
+            tempTransform.position += new Vector3(-endPos.x, -endPos.y, 0);
             elements.Add(tempTransform);
         }
         
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_originalPos + new Vector3(endPos.x, endPos.y, 0), 0.5f);
+    }
 }

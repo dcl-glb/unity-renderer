@@ -2855,7 +2855,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_20abc6adf3cb4b019ff84f6c0f52ecd1",
     "m_StageCapability": 2,
-    "m_Value": 1.25,
+    "m_Value": 1.1299999952316285,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -5055,8 +5055,8 @@
     "m_ObjectId": "bfd1d9fe79af4c8f87fc986e890c351c",
     "m_Title": "Glow",
     "m_Position": {
-        "x": -479.0,
-        "y": 784.9998779296875
+        "x": -813.0,
+        "y": 785.0
     }
 }
 
@@ -5576,7 +5576,8 @@
         "35fc7c6b-1abc-42f5-ad6f-916194a33a3d",
         "f9e0433c-f8a5-4a0b-a352-9003c7464ab1",
         "af450c4b-099b-4544-bd26-eaad6f2d2227",
-        "30fb5dbd-053f-4a91-bf92-15c9746ff055"
+        "30fb5dbd-053f-4a91-bf92-15c9746ff055",
+        "b2c3cbf3-1262-44fe-bc65-a6a4264b532e"
     ],
     "m_PropertyIds": [
         1218514283,
@@ -5584,7 +5585,8 @@
         -1103085917,
         -1857746554,
         1289636136,
-        549721977
+        549721977,
+        111251235
     ]
 }
 
@@ -6026,7 +6028,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_6cf0b9a7e4864d54b95739789e062416",
     "m_StageCapability": 2,
-    "m_Value": 0.9399999976158142,
+    "m_Value": 1.25,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -6046,7 +6048,7 @@
     "m_KeywordDefinition": 0,
     "m_KeywordScope": 0,
     "m_Entries": [],
-    "m_Value": 0,
+    "m_Value": 1,
     "m_IsEditable": true
 }
 

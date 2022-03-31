@@ -1784,9 +1784,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -835.9999389648438,
-            "y": -567.9999389648438,
-            "width": 124.99999237060547,
+            "x": -842.0000610351563,
+            "y": -614.0,
+            "width": 125.00000762939453,
             "height": 34.0
         }
     },
@@ -2122,7 +2122,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "37e7a748c9cd4e448f91c48739699fbf",
     "m_Id": 0,
-    "m_DisplayName": "Icon",
+    "m_DisplayName": "Image",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2984,9 +2984,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -806.0000610351563,
-            "y": -1566.0,
-            "width": 125.0,
+            "x": -790.0000610351563,
+            "y": -1603.0001220703125,
+            "width": 125.00000762939453,
             "height": 34.0
         }
     },
@@ -4038,7 +4038,7 @@
     "m_ObjectId": "a3bb0518f3a94f58947200ce9e9a233a",
     "m_Title": "Glow Horizontal",
     "m_Position": {
-        "x": -776.0,
+        "x": -1241.0,
         "y": -1797.0
     }
 }
@@ -4063,7 +4063,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "a5d4648816514b21b5f55f26c649ed90",
     "m_Id": 0,
-    "m_DisplayName": "Icon",
+    "m_DisplayName": "Image",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4875,7 +4875,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "d8e2c27c21214011b9c79b363adb2a7f",
     "m_Id": 0,
-    "m_DisplayName": "Icon",
+    "m_DisplayName": "Image",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4992,7 +4992,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "da9a7d53610f4ce0bfacb66dc7e2f591",
     "m_Id": 0,
-    "m_DisplayName": "Icon",
+    "m_DisplayName": "Image",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -5175,7 +5175,7 @@
     "m_ObjectId": "e4031d0538df4444bc3802dde51daaa7",
     "m_Title": "Glow Vertical",
     "m_Position": {
-        "x": -771.0,
+        "x": -1192.0,
         "y": -900.0
     }
 }

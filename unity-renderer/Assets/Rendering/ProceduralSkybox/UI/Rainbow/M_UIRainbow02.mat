@@ -48,6 +48,8 @@ Material:
     - ENUM_58624D20ED1143A198AD8AB61FD7DDDE: 1
     - Vector1_041da360d2d14f0cb5d910f8e32963d7: 3
     - Vector1_0dc0c90f96ea4b3b8808267552d52a2e: 1
+    - Vector1_ad6029e6bff542339cfac7adf049a809: 1
     - Vector1_c8ed71ea96674ff1abcb9f02593e55fa: -1
+    - _FILLDIRECTION: 0
     m_Colors: []
   m_BuildTextureStacks: []
