@@ -44,6 +44,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SGUIGlowBlur_0a4f336b63bc428eb96da6e045485725_Texture2Df7a1fd05b40b4273b8cc906f656544c6_3985634290:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGUIGlowBlur_1a2b716726fa489f8d065e91bd93fab3_Texture2Df7a1fd05b40b4273b8cc906f656544c6_3985634290:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SGUIGlowBlur_3313f305c2b544e3b773cebb861aac37_Texture2Df7a1fd05b40b4273b8cc906f656544c6_3985634290:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -53,6 +61,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SGUIGlowBlur_6a60e89eb7a2458d880f9e61a82f4db1_Texture2Df7a1fd05b40b4273b8cc906f656544c6_3985634290:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGUIGlowBlur_a7a3a951b7844c42916c2db661eaa921_Texture2Df7a1fd05b40b4273b8cc906f656544c6_3985634290:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -105,14 +117,15 @@ Material:
     - Vector1_1: 0.2
     - Vector1_160563dae1474095b22f6f17b3f2b39f: 50
     - Vector1_1fbbcb8ca40b4027ae22741e2ed9ca75: 0.5
-    - Vector1_9b3798f9f1a74b8ba10764de1be3aeb6: 27.8
-    - Vector1_dbad36bc6c6c4d119edfaf794fa1e5e0: 0.121
+    - Vector1_84b731247f1946bba1cb6d8438a9bd14: 0.87
+    - Vector1_9b3798f9f1a74b8ba10764de1be3aeb6: 38.1
+    - Vector1_dbad36bc6c6c4d119edfaf794fa1e5e0: 0.115
     - _visibility: 0
     m_Colors:
     - Color_7ea65b9287e0427d9621dcf790aa58d6: {r: 1, g: 0.6736357, b: 0, a: 1}
     - Color_aae2941219194d38adce42aac426401b: {r: 1, g: 1, b: 1, a: 1}
     - Color_df2cffb6ae0b4deea05ebe4752279527: {r: 1, g: 0.82385063, b: 0, a: 1}
-    - Color_e2a59a54b00c485aa91c44889f1095d7: {r: 1, g: 0.4694984, b: 0, a: 1}
+    - Color_e2a59a54b00c485aa91c44889f1095d7: {r: 1, g: 0, b: 0.020209312, a: 1}
     - Vector2_dd2dd1c7f9d042239069b5f11d0ad25d: {r: 0.03, g: 0.31, b: 0, a: 0}
     - _iconTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

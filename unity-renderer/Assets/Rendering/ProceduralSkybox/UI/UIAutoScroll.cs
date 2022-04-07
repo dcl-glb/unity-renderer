@@ -6,13 +6,13 @@ using System.Linq;
 
 public class UIAutoScroll : MonoBehaviour
 {
-    public Camera UICam;
     public GameObject originalText;
     public Vector2 speed;
 
     List<Transform> elements = new List<Transform>();
 
     public Vector2 endPos;
+    Vector2 _finalEndPos;
     Vector3 _originalPos;
 
     void Start()
@@ -24,11 +24,22 @@ public class UIAutoScroll : MonoBehaviour
         newText.transform.position += new Vector3(-endPos.x, -endPos.y, 0);
 
         elements.Add(newText.transform);
+
+        _finalEndPos = endPos;
     }
 
     
     void Update()
     {
+        if((speed.x < 0 && _finalEndPos.x > 0) || (speed.x > 0 && _finalEndPos.x < 0))
+        {
+            _finalEndPos = new Vector2(-_finalEndPos.x, _finalEndPos.y);
+        }
+        if ((speed.y < 0 && _finalEndPos.y > 0) || (speed.y > 0 && _finalEndPos.y < 0))
+        {
+            _finalEndPos = new Vector2(_finalEndPos.x, -_finalEndPos.y);
+        }
+
         MoveElements();
         ResetPosition();
     }
@@ -44,13 +55,13 @@ public class UIAutoScroll : MonoBehaviour
 
     void ResetPosition()
     {
-        if (Mathf.Abs(endPos.y - elements[0].position.y) <= 0.05f ||
-            Mathf.Abs(endPos.x - elements[0].position.x) <= 0.05f)
+        if (Mathf.Abs(_finalEndPos.y - elements[0].position.y) <= 0.05f ||
+            Mathf.Abs(_finalEndPos.x - elements[0].position.x) <= 0.05f)
         {
             Transform tempTransform = elements[0];
             elements.Remove(tempTransform);
             tempTransform.position = _originalPos;
-            tempTransform.position += new Vector3(-endPos.x, -endPos.y, 0);
+            tempTransform.position += new Vector3(-_finalEndPos.x, -_finalEndPos.y, 0);
             elements.Add(tempTransform);
         }
         
@@ -59,6 +70,6 @@ public class UIAutoScroll : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(_originalPos + new Vector3(endPos.x, endPos.y, 0), 0.5f);
+        Gizmos.DrawWireSphere(_originalPos + new Vector3(_finalEndPos.x, _finalEndPos.y, 0), 0.5f);
     }
 }

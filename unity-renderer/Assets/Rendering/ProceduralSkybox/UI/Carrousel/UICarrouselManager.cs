@@ -66,7 +66,7 @@ public class UICarrouselManager : MonoBehaviour
                 a.SetInteger("state", 2);
             }
 
-            if (Mathf.Abs(_midPos.x - Camera.main.WorldToViewportPoint(elements[1].transform.position).x) <= 0.01f)
+            if (Mathf.Abs(_midPos.x - Camera.main.WorldToViewportPoint(elements[1].transform.position).x) <= 0.05f)
             {
                 foreach (Animator a in _animators)
                 {
