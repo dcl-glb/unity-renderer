@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class UIRainbowController : MonoBehaviour
 {
-    public Gradient gradient;
     public Material targetMat;
+    public Texture mask;
+    public Texture gradientTexture;
+    public bool useTexture;
+    public Gradient gradient;
+    public float speed = 0f;
+    [Range(0,1)]
+    public float fill = 1f;
 
+    public enum rainbowT {linear, radial};
+    public enum fillT {left, right, up, down};
+
+    public rainbowT rainbowType;
+    public fillT fillType;
 
     void Awake()
     {
@@ -18,12 +28,38 @@ public class UIRainbowController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(targetMat)
+        {
+            SetValues();
+        }
+        
+    }
+
+    void SetValues()
+    {
+        targetMat.SetTexture("_Mask", mask);
+        targetMat.SetTexture("_Ramp", gradientTexture);
+        targetMat.SetFloat("_Speed", speed);
+        targetMat.SetFloat("_Fill", fill);
+
+        if(useTexture)
+        {
+            targetMat.SetFloat("_UseTexture", 1);
+        }
+        else
+        {
+            targetMat.SetFloat("_UseTexture", 0);
+        }
+
+        targetMat.SetFloat("_GradientMode", ((int)rainbowType));
+        targetMat.SetFloat("_FillDirection", ((int)fillType));
+
         targetMat.SetFloat("_ColorAmount", gradient.colorKeys.Length);
 
         float[] tempPos01 = new float[4];
         float[] tempPos02 = new float[4];
 
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             tempPos01[i] = 1;
             tempPos02[i] = 1;
@@ -32,7 +68,7 @@ public class UIRainbowController : MonoBehaviour
         for (int i = 0; i < gradient.colorKeys.Length; i++)
         {
             targetMat.SetColor("_Color0" + (i + 1).ToString(), gradient.colorKeys[i].color);
-            if(i <= 3)
+            if (i <= 3)
             {
                 tempPos01[i] = gradient.colorKeys[i].time;
             }

@@ -30,11 +30,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: b01bb67eac45b4ce4b289efdfb7c1847, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -54,13 +54,17 @@ Material:
     - ENUM_58624D20ED1143A198AD8AB61FD7DDDE: 0
     - Vector1_041da360d2d14f0cb5d910f8e32963d7: 3
     - Vector1_0dc0c90f96ea4b3b8808267552d52a2e: 1
+    - Vector1_96cbd5f17b8643b9a64bcd2aa02e07ae: 0
     - Vector1_ad6029e6bff542339cfac7adf049a809: 1
     - Vector1_c8ed71ea96674ff1abcb9f02593e55fa: -1
     - _ColorAmount: 7
     - _FILLDIRECTION: 1
     - _Fill: 1
+    - _FillDirection: 0
+    - _GradientMode: 0
     - _MODE: 0
     - _Speed: 0
+    - _UseTexture: 0
     m_Colors:
     - Color_1: {r: 0.36378768, g: 0, b: 1, a: 1}
     - Color_1f4d840107f745479fa373b5a6149fcb: {r: 1, g: 0, b: 0.32126808, a: 1}
@@ -73,8 +77,8 @@ Material:
     - _Color05: {r: 0.17671558, g: 0.0030704818, b: 0.21698111, a: 1}
     - _Color06: {r: 0.1259542, g: 0, b: 0.26415092, a: 1}
     - _Color07: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
-    - _Color08: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - _Color08: {r: 0.6862745, g: 0.654902, b: 0.7372549, a: 1}
     - _GradientPositions: {r: 0, g: 0, b: 0, a: 0}
     - _GradientPositions01: {r: 0, g: 0.13235676, b: 0.39412528, a: 0.5000076}
-    - _GradientPositions02: {r: 0.6088197, g: 0.74706644, b: 1, a: 1}
+    - _GradientPositions02: {r: 0.6088197, g: 0.87353325, b: 1, a: 1}
   m_BuildTextureStacks: []
