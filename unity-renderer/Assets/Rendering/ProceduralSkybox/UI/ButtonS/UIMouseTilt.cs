@@ -51,24 +51,36 @@ public class UIMouseTilt : MonoBehaviour
     {
         if(x > 0)
         {
-            _img.upperRight = new Vector2(_img.upperRight.x, x * distortion);
-            _img.lowerRight = new Vector2(_img.lowerRight.x, -x * distortion);
+            _img.upperRight = new Vector2(_img.upperRight.x, x * distortion/2);
+            _img.lowerRight = new Vector2(_img.lowerRight.x, -x * distortion/2);
+
+            _img.upperLeft = new Vector2(_img.upperRight.x, -x * distortion/2);
+            _img.lowerLeft = new Vector2(_img.lowerRight.x, x * distortion/2);
         }
         else
         {
-            _img.upperLeft = new Vector2(_img.upperLeft.x, -x * distortion);
-            _img.lowerLeft = new Vector2(_img.lowerLeft.x, x * distortion);
+            _img.upperLeft = new Vector2(_img.upperLeft.x, -x * distortion/2);
+            _img.lowerLeft = new Vector2(_img.lowerLeft.x, x * distortion/2);
+
+            _img.upperRight = new Vector2(_img.upperRight.x, x * distortion / 2);
+            _img.lowerRight = new Vector2(_img.lowerRight.x, -x * distortion / 2);
         }
 
         if (y > 0)
         {
-            _img.upperLeft = new Vector2(-y * distortion, _img.upperLeft.y);
-            _img.upperRight = new Vector2(y * distortion, _img.upperRight.y);
+            _img.upperLeft = new Vector2(-y * distortion/2, _img.upperLeft.y);
+            _img.upperRight = new Vector2(y * distortion/2, _img.upperRight.y);
+
+            _img.lowerLeft = new Vector2(y * distortion / 2, _img.lowerLeft.y);
+            _img.lowerRight = new Vector2(-y * distortion / 2, _img.lowerRight.y);
         }
         else
         {
-            _img.lowerLeft = new Vector2(y * distortion, _img.lowerLeft.y);
-            _img.lowerRight = new Vector2(-y * distortion, _img.lowerRight.y);
+            _img.lowerLeft = new Vector2(y * distortion/2, _img.lowerLeft.y);
+            _img.lowerRight = new Vector2(-y * distortion/2, _img.lowerRight.y);
+
+            _img.upperLeft = new Vector2(-y * distortion / 2, _img.upperLeft.y);
+            _img.upperRight = new Vector2(y * distortion / 2, _img.upperRight.y);
         }
 
         if(x == 0 && y == 0)

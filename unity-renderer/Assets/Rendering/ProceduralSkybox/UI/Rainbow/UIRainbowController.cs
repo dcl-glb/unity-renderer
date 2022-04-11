@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+[ExecuteInEditMode]
+public class UIRainbowController : MonoBehaviour
+{
+    public Gradient gradient;
+    public Material targetMat;
+
+
+    void Awake()
+    {
+        targetMat = GetComponent<Image>().material;
+    }
+
+
+    void FixedUpdate()
+    {
+        targetMat.SetFloat("_ColorAmount", gradient.colorKeys.Length);
+
+        float[] tempPos01 = new float[4];
+        float[] tempPos02 = new float[4];
+
+        for(int i = 0; i < 4; i++)
+        {
+            tempPos01[i] = 1;
+            tempPos02[i] = 1;
+        }
+
+        for (int i = 0; i < gradient.colorKeys.Length; i++)
+        {
+            targetMat.SetColor("_Color0" + (i + 1).ToString(), gradient.colorKeys[i].color);
+            if(i <= 3)
+            {
+                tempPos01[i] = gradient.colorKeys[i].time;
+            }
+            else
+            {
+                tempPos02[i - 4] = gradient.colorKeys[i].time;
+            }
+        }
+        Vector4 pos01 = new Vector4(tempPos01[0], tempPos01[1], tempPos01[2], tempPos01[3]);
+        Vector4 pos02 = new Vector4(tempPos02[0], tempPos02[1], tempPos02[2], tempPos02[3]);
+
+        targetMat.SetVector("_GradientPositions01", pos01);
+        targetMat.SetVector("_GradientPositions02", pos02);
+    }
+}
