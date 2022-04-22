@@ -7,10 +7,12 @@ public class UIRainbowController : MonoBehaviour
 {
     public Material targetMat;
     public Texture mask;
-    public Texture gradientTexture;
     public bool useTexture;
+    public Texture gradientTexture;
     public Gradient gradient;
-    public float speed = 0f;
+    public Vector2 speed;
+    [Range(-360, 360)]
+    public float rotation;
     [Range(0,1)]
     public float fill = 1f;
 
@@ -39,10 +41,11 @@ public class UIRainbowController : MonoBehaviour
     {
         targetMat.SetTexture("_Mask", mask);
         targetMat.SetTexture("_Ramp", gradientTexture);
-        targetMat.SetFloat("_Speed", speed);
+        targetMat.SetVector("_Speed", speed);
+        targetMat.SetFloat("_Rotation", rotation);
         targetMat.SetFloat("_Fill", fill);
 
-        if(useTexture)
+        if (useTexture)
         {
             targetMat.SetFloat("_UseTexture", 1);
         }

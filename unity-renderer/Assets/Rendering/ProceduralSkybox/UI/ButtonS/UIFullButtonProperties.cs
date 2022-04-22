@@ -13,6 +13,10 @@ public class UIFullButtonProperties : MonoBehaviour
 
     [Range(0,1)]
     public float fluidVisibility;
+    public Texture icon;
+    public Color backgroundColor;
+    public Color iconColor;
+
 
     Material _frameMat;
     Material _backgroundMat;
@@ -21,11 +25,17 @@ public class UIFullButtonProperties : MonoBehaviour
 
     void Start()
     {
-        _frameMat = new Material(frameImg.material);
-        frameImg.material = _frameMat;
+        if(frameImg)
+        {
+            _frameMat = new Material(frameImg.material);
+            frameImg.material = _frameMat;
+        }
 
-        _backgroundMat = new Material(backgroundImg.material);
-        backgroundImg.material = _backgroundMat;
+        if(backgroundImg)
+        {
+            _backgroundMat = new Material(backgroundImg.material);
+            backgroundImg.material = _backgroundMat;
+        }
 
         _anim = GetComponent<Animator>();
     }
@@ -33,19 +43,33 @@ public class UIFullButtonProperties : MonoBehaviour
     
     void Update()
     {
-        _frameMat.SetFloat("_fill", frameFill);
-        _backgroundMat.SetFloat("_visibility", fluidVisibility);
+        if(frameImg)
+        {
+            _frameMat.SetFloat("_fill", frameFill);
+        }
+        
+        if(backgroundImg)
+        {
+            _backgroundMat.SetFloat("_Visibility", fluidVisibility);
+            _backgroundMat.SetTexture("_Icon", icon);
+            _backgroundMat.SetColor("_BaseColor", backgroundColor);
+            _backgroundMat.SetColor("_IconColor", iconColor);
+        }
     }
 
     public void ToggleState(bool over)
     {
-        if(over)
+        if(_anim)
         {
-            _anim.SetInteger("state", 1);
+            if (over)
+            {
+                _anim.SetInteger("state", 1);
+            }
+            else
+            {
+                _anim.SetInteger("state", 2);
+            }
         }
-        else
-        {
-            _anim.SetInteger("state", 2);
-        }
+        
     }
 }

@@ -15,7 +15,7 @@ public class UIImageDistortion : Image
     {
         base.OnPopulateMesh(vh);
         verHelp = vh;
-
+        
         RelocateVertex(vh, 0, lowerLeft);
         RelocateVertex(vh, 1, upperLeft);
         RelocateVertex(vh, 2, upperRight);

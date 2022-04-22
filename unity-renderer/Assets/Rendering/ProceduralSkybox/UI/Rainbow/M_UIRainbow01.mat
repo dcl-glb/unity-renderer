@@ -54,31 +54,35 @@ Material:
     - ENUM_58624D20ED1143A198AD8AB61FD7DDDE: 0
     - Vector1_041da360d2d14f0cb5d910f8e32963d7: 3
     - Vector1_0dc0c90f96ea4b3b8808267552d52a2e: 1
+    - Vector1_63c16ddea651404b80c4f0b881aa82f8: 45
     - Vector1_96cbd5f17b8643b9a64bcd2aa02e07ae: 0
     - Vector1_ad6029e6bff542339cfac7adf049a809: 1
     - Vector1_c8ed71ea96674ff1abcb9f02593e55fa: -1
-    - _ColorAmount: 7
+    - _ColorAmount: 4
     - _FILLDIRECTION: 1
     - _Fill: 1
     - _FillDirection: 0
     - _GradientMode: 0
     - _MODE: 0
-    - _Speed: 0
+    - _Rotation: 0
+    - _Speed: -0.5
     - _UseTexture: 0
     m_Colors:
     - Color_1: {r: 0.36378768, g: 0, b: 1, a: 1}
     - Color_1f4d840107f745479fa373b5a6149fcb: {r: 1, g: 0, b: 0.32126808, a: 1}
     - Color_2: {r: 0, g: 1, b: 0.6875515, a: 1}
     - Color_3: {r: 1, g: 0.8461649, b: 0, a: 1}
-    - _Color01: {r: 0.4716981, g: 0.3715735, b: 0.3715735, a: 1}
-    - _Color02: {r: 0.9150943, g: 0.7869332, b: 0.43596473, a: 1}
-    - _Color03: {r: 0.6406181, g: 0.8381198, b: 0.8590854, a: 1}
-    - _Color04: {r: 0.9137255, g: 0.09019608, b: 0.36975482, a: 1}
-    - _Color05: {r: 0.17671558, g: 0.0030704818, b: 0.21698111, a: 1}
-    - _Color06: {r: 0.1259542, g: 0, b: 0.26415092, a: 1}
-    - _Color07: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - Vector2_78f3be465bbe47ff8bdd02c11cda1811: {r: 2.23, g: 1.76, b: 0, a: 0}
+    - _Color01: {r: 0.4386287, g: 0, b: 1, a: 1}
+    - _Color02: {r: 1, g: 0.61900264, b: 0, a: 1}
+    - _Color03: {r: 1, g: 0, b: 0.02109909, a: 1}
+    - _Color04: {r: 0.43862867, g: 0, b: 1, a: 1}
+    - _Color05: {r: 0.8679245, g: 0.83067197, b: 0.78195083, a: 1}
+    - _Color06: {r: 0.8679245, g: 0.85297257, b: 0.78195083, a: 1}
+    - _Color07: {r: 0.8301887, g: 0.56226456, b: 0.1527234, a: 1}
     - _Color08: {r: 0.6862745, g: 0.654902, b: 0.7372549, a: 1}
     - _GradientPositions: {r: 0, g: 0, b: 0, a: 0}
-    - _GradientPositions01: {r: 0, g: 0.13235676, b: 0.39412528, a: 0.5000076}
-    - _GradientPositions02: {r: 0.6088197, g: 0.87353325, b: 1, a: 1}
+    - _GradientPositions01: {r: 0, g: 0.33299762, b: 0.66599524, a: 1}
+    - _GradientPositions02: {r: 1, g: 1, b: 1, a: 1}
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

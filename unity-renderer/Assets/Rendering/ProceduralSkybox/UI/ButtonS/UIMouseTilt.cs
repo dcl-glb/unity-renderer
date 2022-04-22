@@ -7,21 +7,28 @@ public class UIMouseTilt : MonoBehaviour
 {
     public Camera cam;
 
-    public GameObject target;
+    public GameObject tiltTarget;
     public float tilt;
-    public float distortion;
+    //public float distortion;
 
     bool _mouseOver;
     
     Vector2 _screenPos;
 
     RectTransform _rect;
-    UIImageDistortion _img;
+    //UIImageDistortion[] _imgs;
+    //public List<float> imgDistortMulti = new List<float>();
+
 
     private void Start()
     {
         _rect = GetComponent<RectTransform>();
-        _img = GetComponent<UIImageDistortion>();
+        /*_imgs = GetComponentsInChildren<UIImageDistortion>();
+
+        while (imgDistortMulti.Count < _imgs.Length)
+        {
+            imgDistortMulti.Add(1);
+        }*/
     }
 
 
@@ -31,14 +38,13 @@ public class UIMouseTilt : MonoBehaviour
         
         if(_mouseOver)
         {
-
-            target.transform.rotation = Quaternion.Euler((mousePos.y - _screenPos.y) * tilt, (mousePos.x - _screenPos.x) * tilt, 0);
-            Resize(mousePos.x - _screenPos.x, mousePos.y - _screenPos.y);
+            tiltTarget.transform.rotation = Quaternion.Euler((mousePos.y - _screenPos.y) * tilt, (mousePos.x - _screenPos.x) * tilt, 0);
+            //CalculatePositions(mousePos.x - _screenPos.x, mousePos.y - _screenPos.y);
         }
         else
         {
-            target.transform.rotation = Quaternion.Euler(0, 0, 0);
-            Resize(0,0);
+            //tiltTarget.transform.rotation = Quaternion.Euler(0, 0, 0);
+            //CalculatePositions(0,0);
         }
     }
 
@@ -47,51 +53,81 @@ public class UIMouseTilt : MonoBehaviour
         _screenPos = cam.WorldToViewportPoint(_rect.position);
     }
 
-    void Resize(float x, float y)
+    /*void CalculatePositions(float x, float y)
     {
-        if(x > 0)
-        {
-            _img.upperRight = new Vector2(_img.upperRight.x, x * distortion/2);
-            _img.lowerRight = new Vector2(_img.lowerRight.x, -x * distortion/2);
+        Vector2 upperLeft = new Vector2(0,0);
+        Vector2 upperRight = new Vector2(0, 0);
+        Vector2 lowerRight = new Vector2(0, 0);
+        Vector2 lowerLeft = new Vector2(0, 0);
 
-            _img.upperLeft = new Vector2(_img.upperRight.x, -x * distortion/2);
-            _img.lowerLeft = new Vector2(_img.lowerRight.x, x * distortion/2);
+        if (x > 0)
+        {
+            upperRight = new Vector2(_imgs[0].upperRight.x, x * distortion / 2);
+            lowerRight = new Vector2(_imgs[0].lowerRight.x, -x * distortion / 2);
+
+            upperLeft = new Vector2(_imgs[0].upperRight.x, -x * distortion / 2);
+            lowerLeft = new Vector2(_imgs[0].lowerRight.x, x * distortion / 2);
+
+            Distort(upperLeft, upperRight, lowerRight, lowerLeft);
         }
         else
         {
-            _img.upperLeft = new Vector2(_img.upperLeft.x, -x * distortion/2);
-            _img.lowerLeft = new Vector2(_img.lowerLeft.x, x * distortion/2);
+            upperRight = new Vector2(_imgs[0].upperRight.x, x * distortion / 2);
+            lowerRight = new Vector2(_imgs[0].lowerRight.x, -x * distortion / 2);
 
-            _img.upperRight = new Vector2(_img.upperRight.x, x * distortion / 2);
-            _img.lowerRight = new Vector2(_img.lowerRight.x, -x * distortion / 2);
+            upperLeft = new Vector2(_imgs[0].upperLeft.x, -x * distortion / 2);
+            lowerLeft = new Vector2(_imgs[0].lowerLeft.x, x * distortion / 2);
+
+            Distort(upperLeft, upperRight, lowerRight, lowerLeft);
         }
 
         if (y > 0)
         {
-            _img.upperLeft = new Vector2(-y * distortion/2, _img.upperLeft.y);
-            _img.upperRight = new Vector2(y * distortion/2, _img.upperRight.y);
+            upperRight = new Vector2(y * distortion / 2, _imgs[0].upperRight.y);
+            lowerRight = new Vector2(-y * distortion / 2, _imgs[0].lowerRight.y);
 
-            _img.lowerLeft = new Vector2(y * distortion / 2, _img.lowerLeft.y);
-            _img.lowerRight = new Vector2(-y * distortion / 2, _img.lowerRight.y);
+            upperLeft = new Vector2(-y * distortion / 2, _imgs[0].upperLeft.y);
+            lowerLeft = new Vector2(y * distortion / 2, _imgs[0].lowerLeft.y);
+
+            Distort(upperLeft, upperRight, lowerRight, lowerLeft);
         }
         else
         {
-            _img.lowerLeft = new Vector2(y * distortion/2, _img.lowerLeft.y);
-            _img.lowerRight = new Vector2(-y * distortion/2, _img.lowerRight.y);
+            upperRight = new Vector2(y * distortion / 2, _imgs[0].upperRight.y);
+            lowerRight = new Vector2(-y * distortion / 2, _imgs[0].lowerRight.y);
 
-            _img.upperLeft = new Vector2(-y * distortion / 2, _img.upperLeft.y);
-            _img.upperRight = new Vector2(y * distortion / 2, _img.upperRight.y);
+            upperLeft = new Vector2(-y * distortion / 2, _imgs[0].upperLeft.y);
+            lowerLeft = new Vector2(y * distortion / 2, _imgs[0].lowerLeft.y);
+
+            Distort(upperLeft, upperRight, lowerRight, lowerLeft);
         }
 
         if(x == 0 && y == 0)
         {
-            _img.upperLeft = new Vector2(0, 0);
-            _img.upperRight = new Vector2(0, 0);
-            _img.lowerLeft = new Vector2(0, 0);
-            _img.lowerRight = new Vector2(0, 0);
+            Distort(new Vector2(0,0), new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0));
         }
-        _img.SetVerticesDirty();
+
+        for (int i = 0; i < _imgs.Length; i++)
+        {
+            UIImageDistortion img = _imgs[i];
+            img.SetVerticesDirty();
+        }
     }
+
+    void Distort(Vector2 upperLeft, Vector2 upperRight, Vector2 lowerRight, Vector2 lowerLeft)
+    {
+        for (int i = 0; i < _imgs.Length; i++)
+        {
+            UIImageDistortion img = _imgs[i];
+            float intensity = imgDistortMulti[i];
+
+            img.upperRight = upperRight * intensity;
+            img.lowerRight = lowerRight * intensity;
+
+            img.upperLeft = upperLeft * intensity;
+            img.lowerLeft = lowerLeft * intensity;
+        }
+    }*/
 
     public void ToggleMouseOver(bool value)
     {
