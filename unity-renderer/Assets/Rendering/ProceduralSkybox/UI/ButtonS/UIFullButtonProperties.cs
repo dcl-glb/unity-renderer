@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class UIFullButtonProperties : MonoBehaviour
 {
+    [Header("Frame")]
     public Image frameImg;
-    public Image backgroundImg;
-
+    
     [Range(0, 1)]
     public float frameFill;
+    [Range(0, 360)]
+    public float frameStartAngle = 135f;
+    public float frameGlowSize = 0.9f;
 
+    [Header("Fill")]
+    public Image backgroundImg;
+    
     [Range(0,1)]
     public float fluidVisibility;
     public Texture icon;
@@ -45,7 +51,9 @@ public class UIFullButtonProperties : MonoBehaviour
     {
         if(frameImg)
         {
-            _frameMat.SetFloat("_fill", frameFill);
+            _frameMat.SetFloat("_Fill", frameFill);
+            _frameMat.SetFloat("_StartingAngle", frameStartAngle);
+            _frameMat.SetFloat("_GlowSampleSize", frameGlowSize);
         }
         
         if(backgroundImg)
@@ -63,11 +71,11 @@ public class UIFullButtonProperties : MonoBehaviour
         {
             if (over)
             {
-                _anim.SetInteger("state", 1);
+                _anim.SetTrigger("In");
             }
             else
             {
-                _anim.SetInteger("state", 2);
+                _anim.SetTrigger("Out");
             }
         }
         

@@ -10,7 +10,7 @@ Material:
   m_Name: M_UIButtonBackground
   m_Shader: {fileID: -6465566751694194690, guid: 0179cd0fcdba88c4c985413d49f0ba08,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _SHADERTYPE_BEVELSQUARE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -125,16 +125,21 @@ Material:
     - Vector1_1: 0.2
     - Vector1_160563dae1474095b22f6f17b3f2b39f: 100
     - Vector1_1fbbcb8ca40b4027ae22741e2ed9ca75: 0.5
+    - Vector1_42a44a3cf65f46dcaf0bfef0799e5b8a: 5
     - Vector1_468d93c785eb4445a607f7a865b359a2: 1.13
     - Vector1_84b731247f1946bba1cb6d8438a9bd14: 0.86
     - Vector1_9b3798f9f1a74b8ba10764de1be3aeb6: 38
     - Vector1_dbad36bc6c6c4d119edfaf794fa1e5e0: 0.192
+    - Vector1_df665d3a7c194d168ddb8f3de3368d5a: 0.5
     - Vector1_f90d162756644ffeb8c2b0d150a15eda: 3
     - _Depth: 100
-    - _GlowIntensity: 1.13
+    - _GlowIntensity: 0
     - _GlowQuality: 26.3
     - _GlowSize: 1
     - _GlowSmoothness: 0.0701
+    - _SHADERTYPE: 3
+    - _ShapeRoundness: 0.5
+    - _ShapeSides: 5
     - _Speed01: 0.5
     - _Speed02: 0.2
     - _Visibility: 1
@@ -145,13 +150,15 @@ Material:
     - Color_df2cffb6ae0b4deea05ebe4752279527: {r: 1, g: 0.82385063, b: 0, a: 1}
     - Color_e2a59a54b00c485aa91c44889f1095d7: {r: 1, g: 0.94886804, b: 0.7311321,
         a: 1}
+    - Vector2_bb3bef5d8c7640a3aa459c0232cc640c: {r: 0.75, g: 0.75, b: 0, a: 0}
     - Vector2_dd2dd1c7f9d042239069b5f11d0ad25d: {r: 0.03, g: 0.31, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color01: {r: 1, g: 0.7978908, b: 0, a: 1}
     - _Color02: {r: 1, g: 0.5971241, b: 0, a: 1}
     - _Contrast: {r: 0.06, g: 0.3, b: 0, a: 0}
-    - _GlowColor: {r: 1, g: 0.9844901, b: 0.9292453, a: 1}
+    - _GlowColor: {r: 1, g: 0.9844901, b: 0.9292453, a: 0}
     - _IconColor: {r: 1, g: 1, b: 1, a: 1}
-    - _iconScaleAndOffset: {r: 1, g: 0, b: 0, a: 0}
+    - _ShapeSize: {r: 0.75, g: 0.75, b: 0, a: 0}
+    - _iconScaleAndOffset: {r: 1.5, g: 0, b: 0, a: 0}
     - _iconTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
