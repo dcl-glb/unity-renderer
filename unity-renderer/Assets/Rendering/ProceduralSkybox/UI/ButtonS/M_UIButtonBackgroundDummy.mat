@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_UIButtonBackground
+  m_Name: M_UIButtonBackgroundDummy
   m_Shader: {fileID: -6465566751694194690, guid: 0179cd0fcdba88c4c985413d49f0ba08,
     type: 3}
   m_ShaderKeywords: _SHADERTYPE_BEVELSQUARE
@@ -158,7 +158,7 @@ Material:
     - _Contrast: {r: 0.06, g: 0.3, b: 0, a: 0}
     - _GlowColor: {r: 1, g: 0.9844901, b: 0.9292453, a: 0}
     - _IconColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShapeSize: {r: 0.55, g: 0.55, b: 0, a: 0}
-    - _iconScaleAndOffset: {r: 1, g: 0, b: 0, a: 0}
+    - _ShapeSize: {r: 0.75, g: 0.75, b: 0, a: 0}
+    - _iconScaleAndOffset: {r: 1.5, g: 0, b: 0, a: 0}
     - _iconTilingAndOffset: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_UIRainbowFrame
+  m_Name: M_UIRainbowFrameDummy
   m_Shader: {fileID: -6465566751694194690, guid: 25c03f07b9bea47459300a67567cec05,
     type: 3}
   m_ShaderKeywords: _SHAPETYPE_BEVELSQUARE
@@ -144,5 +144,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 1, g: 0.9264151, b: 0.4481132, a: 1}
     - _InnerColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShapeSize: {r: 0.55, g: 0.55, b: 0, a: 0}
+    - _ShapeSize: {r: 0.75, g: 0.75, b: 0, a: 0}
   m_BuildTextureStacks: []
