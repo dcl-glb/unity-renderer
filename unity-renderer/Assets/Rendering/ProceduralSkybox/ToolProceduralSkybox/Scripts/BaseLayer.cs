@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace DCL.Skybox
 {
-    // Commit 10 verified
+    // Commit 11 verified
     [System.Serializable]
     public class TextureLayer
     {
