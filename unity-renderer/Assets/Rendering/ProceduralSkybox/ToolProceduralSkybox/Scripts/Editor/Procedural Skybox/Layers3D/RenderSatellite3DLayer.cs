@@ -26,9 +26,6 @@ namespace DCL.Skybox
             // Fading
             RenderSimpleValues.RenderSepratedFloatFields(SkyboxEditorLiterals.fade, SkyboxEditorLiterals.inStr, ref config.fadeInTime, SkyboxEditorLiterals.outStr, ref config.fadeOutTime);
 
-            //// Tint
-            //RenderSimpleValues.RenderFloatFieldAsSlider(SkyboxEditorLiterals.tint, ref layer.tintPercentage, 0, 100);
-
             RenderSimpleValues.RenderPrefabInput("Prefab", ref config.satellite);
             RenderSimpleValues.RenderFloatField("Size", ref config.satelliteSize);
             RenderSimpleValues.RenderFloatField("Radius", ref config.radius);

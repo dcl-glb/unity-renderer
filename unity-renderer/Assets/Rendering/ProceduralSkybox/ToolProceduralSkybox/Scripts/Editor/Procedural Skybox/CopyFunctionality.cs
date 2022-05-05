@@ -28,10 +28,6 @@ namespace DCL.Skybox
             dome.layers = copiedLayer;
             return dome;
         }
-        public Config3DSatellite GetCopiedSatellite()
-        {
-            Config3DSatellite satellite = new Config3DSatellite(copiedSatellite.nameInEditor);
-            return satellite;
-        }
+        public Config3DSatellite GetCopiedSatellite() { return copiedSatellite; }
     }
 }
