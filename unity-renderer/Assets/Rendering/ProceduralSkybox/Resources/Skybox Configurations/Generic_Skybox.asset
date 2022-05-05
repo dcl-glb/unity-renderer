@@ -1533,20 +1533,20 @@ MonoBehaviour:
   - enabled: 1
     nameInEditor: Satellite 1
     timeSpan_start: 0
-    timeSpan_End: 24
-    fadeInTime: 0
-    fadeOutTime: 0
+    timeSpan_End: 12
+    fadeInTime: 1
+    fadeOutTime: 1
     satellite: {fileID: 6438672508873746031, guid: 85fffff8da2209f488db387531537bc5,
       type: 3}
     satelliteSize: 500
     radius: 500
-    initialAngle: 275
-    horizonPlaneRotation: 122
-    inclination: 90
+    initialAngle: 216
+    horizonPlaneRotation: 111
+    inclination: 59
     movementSpeed: 25
     satelliteRotation: 1
     fixedRotation: {x: 90, y: 0, z: 0}
-    rotateAroundAxis: {x: 0, y: 1, z: 0}
+    rotateAroundAxis: {x: 1, y: 1, z: 0}
     rotateSpeed: 2
     renderType: 0
   - enabled: 0
