@@ -7,7 +7,7 @@ namespace DCL.Skybox
 {
     public static class RenderSatellite3DLayer
     {
-        public static void RenderLayer(ref float timeOfTheDay, EditorToolMeasurements toolSize, Satellite3DLayer config)
+        public static void RenderLayer(ref float timeOfTheDay, EditorToolMeasurements toolSize, Config3DSatellite config)
         {
 
             // name In Editor

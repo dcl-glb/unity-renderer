@@ -4,13 +4,6 @@ using UnityEngine;
 
 namespace DCL.Skybox
 {
-    public class DomeReferences
-    {
-        public GameObject domeGO;
-        public Material domeMat;
-        public bool domeInUse;
-    }
-
     public class SatelliteReferences
     {
         public GameObject satelliteParent;
@@ -74,7 +67,7 @@ namespace DCL.Skybox
 
         #region Satellite
 
-        public List<SatelliteReferences> GetSatelliteAllActiveSatelliteRefs(List<Satellite3DLayer> satelliteLayers)
+        public List<SatelliteReferences> GetSatelliteAllActiveSatelliteRefs(List<Config3DSatellite> satelliteLayers)
         {
             for (int i = 0; i < satelliteLayers.Count; i++)
             {
@@ -83,7 +76,7 @@ namespace DCL.Skybox
             return usedSatellites;
         }
 
-        public SatelliteReferences GetSatelliteObject(Satellite3DLayer config)
+        public SatelliteReferences GetSatelliteObject(Config3DSatellite config)
         {
             SatelliteReferences tempSatellite = null;
 
@@ -117,7 +110,7 @@ namespace DCL.Skybox
             return tempSatellite;
         }
 
-        SatelliteReferences InstantiateNewSatelliteReference(Satellite3DLayer config)
+        SatelliteReferences InstantiateNewSatelliteReference(Config3DSatellite config)
         {
             if (satelliteParentPrefab == null)
             {

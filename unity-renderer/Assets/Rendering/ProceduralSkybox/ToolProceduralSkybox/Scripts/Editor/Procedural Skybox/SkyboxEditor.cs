@@ -283,11 +283,19 @@ namespace DCL.Skybox
             RenderLeftPanelBaseSkyboxLayers.Render(ref timeOfTheDay, toolSize, selectedConfiguration, AddToRightPanel, renderingOrderList, copyPasteObj);
 
             // Render 3D layers
-            EditorGUILayout.LabelField(SkyboxEditorLiterals.threeDLayers, EditorStyles.label, GUILayout.Width(leftPanelWidth - 10), GUILayout.ExpandWidth(false));
+            EditorGUILayout.LabelField(SkyboxEditorLiterals.RenderDomeLayers, EditorStyles.label, GUILayout.Width(leftPanelWidth - 10), GUILayout.ExpandWidth(false));
 
             EditorGUILayout.Space(toolSize.leftPanelButtonSpace);
 
-            RenderLeftPanel3DLayers.Render(ref timeOfTheDay, toolSize, selectedConfiguration, AddToRightPanel, copyPasteObj);
+            RenderLeftPanelDomeLayers.Render(ref timeOfTheDay, toolSize, selectedConfiguration, AddToRightPanel, copyPasteObj);
+
+            EditorGUILayout.Space(toolSize.leftPanelButtonSpace);
+
+            EditorGUILayout.LabelField(SkyboxEditorLiterals.RenderSatelliteLayers, EditorStyles.label, GUILayout.Width(leftPanelWidth - 10), GUILayout.ExpandWidth(false));
+
+            EditorGUILayout.Space(toolSize.leftPanelButtonSpace);
+
+            RenderLeftPanelSatelliteLayers.Render(ref timeOfTheDay, toolSize, selectedConfiguration, AddToRightPanel, copyPasteObj);
 
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndScrollView();
