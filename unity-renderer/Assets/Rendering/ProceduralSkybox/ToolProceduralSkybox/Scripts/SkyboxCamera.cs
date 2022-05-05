@@ -25,7 +25,6 @@ namespace DCL.Skybox
             var cameraData = skyboxCamera.GetUniversalAdditionalCameraData();
             cameraData.renderShadows = false;
             skyboxCamera.useOcclusionCulling = false;
-            skyboxCamera.depth = -5;
             skyboxCamera.cullingMask = (1 << LayerMask.NameToLayer("Skybox"));
 
             // Attach follow script
