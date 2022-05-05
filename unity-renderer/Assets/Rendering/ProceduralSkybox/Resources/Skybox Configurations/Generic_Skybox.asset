@@ -996,6 +996,172 @@ MonoBehaviour:
     expandedInEditor: 0
     nameInEditor: 
     layers:
+      slotID: 3
+      renderType: 0
+      layerType: 4
+      enabled: 0
+      nameInEditor: Near Clouds
+      expandedInEditor: 0
+      timeSpan_start: 0
+      timeSpan_End: 24
+      fadingInTime: 0
+      fadingOutTime: 0
+      tintPercentage: 47.5
+      renderDistance: []
+      texture: {fileID: 0}
+      textureNormal: {fileID: 0}
+      cubemap: {fileID: 8900000, guid: 6916db5be836ac04fa4b08138fc15fb9, type: 3}
+      color:
+        serializedVersion: 2
+        key0: {r: 0.59171927, g: 0.49942148, b: 0.8207547, a: 0.5019608}
+        key1: {r: 0.8962264, g: 0.6248873, b: 0.56225526, a: 0.7137255}
+        key2: {r: 1, g: 0.9583444, b: 0.9481132, a: 0.7607843}
+        key3: {r: 0.9811321, g: 0.8130697, b: 0.72659314, a: 1}
+        key4: {r: 0.5921569, g: 0.49803922, b: 0.81960785, a: 0.5019608}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 14842
+        ctime2: 32575
+        ctime3: 51079
+        ctime4: 65535
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 13878
+        atime2: 32189
+        atime3: 53970
+        atime4: 65535
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_NumColorKeys: 5
+        m_NumAlphaKeys: 5
+      tiling: {x: 1, y: 1}
+      flipbookRowsAndColumns: {x: 0, y: 0}
+      flipbookAnimSpeed: 0
+      offset: []
+      satelliteWidthHeight: []
+      rotations_float: []
+      rotations_Vector3: []
+      speed_Vector3: {x: 0, y: 1, z: 0}
+      speed_Vector2: {x: 0, y: 0}
+      speed_float: 0
+      normalIntensity: 0
+      particleExpanded: 0
+      particleTiling: {x: 1, y: 1}
+      particlesOffset: {x: 0, y: 0}
+      particleRotation:
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      particlesAmount: 1
+      particleMinSize: 1
+      particleMaxSize: 1
+      particlesHorizontalSpread: 1
+      particlesVerticalSpread: 1
+      particleMinFade: 1
+      particleMaxFade: 1
+      distortionExpanded: 0
+      distortIntensity: []
+      distortSize: []
+      distortSpeed: []
+      distortSharpness: []
+      movementTypeCubemap: 0
+      movementTypePlanar_Radial: 0
+      movementTypeSatellite: 0
+    domeRadius: 75
+  - configType: 0
+    enabled: 1
+    expandedInEditor: 0
+    nameInEditor: 
+    layers:
+      slotID: 2
+      renderType: 0
+      layerType: 4
+      enabled: 0
+      nameInEditor: Far Clouds
+      expandedInEditor: 0
+      timeSpan_start: 0
+      timeSpan_End: 24
+      fadingInTime: 0
+      fadingOutTime: 0
+      tintPercentage: 100
+      renderDistance: []
+      texture: {fileID: 0}
+      textureNormal: {fileID: 0}
+      cubemap: {fileID: 8900000, guid: 0095a9bafa47e9048995bf8ca764aeee, type: 3}
+      color:
+        serializedVersion: 2
+        key0: {r: 0.5692789, g: 0.46715, b: 0.86142135, a: 0.61960787}
+        key1: {r: 0.8301887, g: 0.69191986, b: 0.6383055, a: 1}
+        key2: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+        key3: {r: 1, g: 1, b: 1, a: 1}
+        key4: {r: 0.54901963, g: 0.4509804, b: 0.8784314, a: 0.61960787}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 14456
+        ctime2: 22166
+        ctime3: 45682
+        ctime4: 65535
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 12914
+        atime2: 32768
+        atime3: 50308
+        atime4: 65535
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_NumColorKeys: 5
+        m_NumAlphaKeys: 5
+      tiling: {x: 1, y: 1}
+      flipbookRowsAndColumns: {x: 1, y: 1}
+      flipbookAnimSpeed: 1
+      offset: []
+      satelliteWidthHeight: []
+      rotations_float: []
+      rotations_Vector3: []
+      speed_Vector3: {x: 0, y: 0.4, z: 0}
+      speed_Vector2: {x: 0, y: 0}
+      speed_float: 0
+      normalIntensity: 0
+      particleExpanded: 0
+      particleTiling: {x: 1, y: 1}
+      particlesOffset: {x: 0, y: 0}
+      particleRotation: []
+      particlesAmount: 1
+      particleMinSize: 1
+      particleMaxSize: 1
+      particlesHorizontalSpread: 1
+      particlesVerticalSpread: 1
+      particleMinFade: 1
+      particleMaxFade: 1
+      distortionExpanded: 0
+      distortIntensity: []
+      distortSize: []
+      distortSpeed: []
+      distortSharpness: []
+      movementTypeCubemap: 0
+      movementTypePlanar_Radial: 0
+      movementTypeSatellite: 0
+    domeRadius: 80
+  - configType: 0
+    enabled: 1
+    expandedInEditor: 0
+    nameInEditor: 
+    layers:
       slotID: 1
       renderType: 0
       layerType: 2
@@ -1088,7 +1254,195 @@ MonoBehaviour:
       movementTypeCubemap: 0
       movementTypePlanar_Radial: 0
       movementTypeSatellite: 1
-    domeRadius: 80
+    domeRadius: 85
+  - configType: 0
+    enabled: 1
+    expandedInEditor: 0
+    nameInEditor: 
+    layers:
+      slotID: 1
+      renderType: 1
+      layerType: 2
+      enabled: 1
+      nameInEditor: Moon
+      expandedInEditor: 0
+      timeSpan_start: 21
+      timeSpan_End: 2
+      fadingInTime: 1
+      fadingOutTime: 0.5
+      tintPercentage: 100
+      renderDistance: []
+      texture: {fileID: 2800000, guid: e115b258140375c48b22b4bdf6b4ae5b, type: 3}
+      textureNormal: {fileID: 0}
+      cubemap: {fileID: 0}
+      color:
+        serializedVersion: 2
+        key0: {r: 46.020054, g: 59.314735, b: 65.109856, a: 0}
+        key1: {r: 33.03661, g: 22.831585, b: 26.463882, a: 0.7058824}
+        key2: {r: 23.69832, g: 21.763763, b: 30.791695, a: 0}
+        key3: {r: 1.481145, g: 1.3602352, b: 1.9244809, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 8867
+        ctime1: 17733
+        ctime2: 32768
+        ctime3: 65535
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 386
+        atime1: 31611
+        atime2: 65535
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_NumColorKeys: 4
+        m_NumAlphaKeys: 3
+      tiling: {x: 1, y: 1}
+      flipbookRowsAndColumns: {x: 0, y: 0}
+      flipbookAnimSpeed: 0
+      offset:
+      - percentage: 0
+        value: {x: -218.4, y: 23.3}
+      - percentage: 100
+        value: {x: -257.7, y: 50.5}
+      satelliteWidthHeight:
+      - percentage: 0
+        value: {x: 3, y: 3}
+      - percentage: 44
+        value: {x: 4, y: 4}
+      - percentage: 100
+        value: {x: 4, y: 4}
+      - percentage: 0
+        value: {x: 3, y: 3}
+      - percentage: 44
+        value: {x: 4, y: 4}
+      - percentage: 100
+        value: {x: 4, y: 4}
+      rotations_float: []
+      rotations_Vector3: []
+      speed_Vector3: {x: 0, y: 0, z: 0}
+      speed_Vector2: {x: 0, y: 0}
+      speed_float: 0
+      normalIntensity: 0
+      particleExpanded: 0
+      particleTiling: {x: 1, y: 1}
+      particlesOffset: {x: 0, y: 0}
+      particleRotation:
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      particlesAmount: 1
+      particleMinSize: 1
+      particleMaxSize: 1
+      particlesHorizontalSpread: 1
+      particlesVerticalSpread: 1
+      particleMinFade: 1
+      particleMaxFade: 1
+      distortionExpanded: 0
+      distortIntensity: []
+      distortSize: []
+      distortSpeed: []
+      distortSharpness: []
+      movementTypeCubemap: 0
+      movementTypePlanar_Radial: 0
+      movementTypeSatellite: 1
+    domeRadius: 90
+  - configType: 0
+    enabled: 1
+    expandedInEditor: 0
+    nameInEditor: 
+    layers:
+      slotID: 0
+      renderType: 0
+      layerType: 1
+      enabled: 0
+      nameInEditor: disturbance
+      expandedInEditor: 0
+      timeSpan_start: 0
+      timeSpan_End: 24
+      fadingInTime: 0
+      fadingOutTime: 5
+      tintPercentage: 0
+      renderDistance: []
+      texture: {fileID: 2800000, guid: 0da79a6b573fd2440888585d294e07d3, type: 3}
+      textureNormal: {fileID: 0}
+      cubemap: {fileID: 0}
+      color:
+        serializedVersion: 2
+        key0: {r: 0.4745098, g: 0.22352941, b: 0.58431375, a: 1}
+        key1: {r: 1, g: 0.48612696, b: 0, a: 1}
+        key2: {r: 0.8160377, g: 0.9916906, b: 1, a: 0.36862746}
+        key3: {r: 1, g: 1, b: 1, a: 0}
+        key4: {r: 0.9339623, g: 0.508445, b: 0.374466, a: 0}
+        key5: {r: 1, g: 0.24847966, b: 0.10849059, a: 0}
+        key6: {r: 0.4676065, g: 0.21181916, b: 0.5283019, a: 0}
+        key7: {r: 0.47303528, g: 0.22347811, b: 0.5849056, a: 0}
+        ctime0: 0
+        ctime1: 16384
+        ctime2: 30647
+        ctime3: 36237
+        ctime4: 49151
+        ctime5: 53199
+        ctime6: 58211
+        ctime7: 65535
+        atime0: 0
+        atime1: 65535
+        atime2: 65535
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_NumColorKeys: 8
+        m_NumAlphaKeys: 2
+      tiling: {x: 5, y: 2}
+      flipbookRowsAndColumns: {x: 2.43, y: -9.78}
+      flipbookAnimSpeed: 0
+      offset: []
+      satelliteWidthHeight: []
+      rotations_float: []
+      rotations_Vector3: []
+      speed_Vector3: {x: 0, y: 0, z: 0}
+      speed_Vector2: {x: 0.01, y: 0}
+      speed_float: 0
+      normalIntensity: 0
+      particleExpanded: 0
+      particleTiling: {x: 1, y: 1}
+      particlesOffset: {x: 0, y: 0}
+      particleRotation:
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      - percentage: 0
+        value: {x: 0, y: 0, z: 0}
+      particlesAmount: 1
+      particleMinSize: 1
+      particleMaxSize: 1
+      particlesHorizontalSpread: 1
+      particlesVerticalSpread: 1
+      particleMinFade: 1
+      particleMaxFade: 1
+      distortionExpanded: 0
+      distortIntensity: []
+      distortSize: []
+      distortSpeed: []
+      distortSharpness: []
+      movementTypeCubemap: 0
+      movementTypePlanar_Radial: 0
+      movementTypeSatellite: 0
+    domeRadius: 95
   - configType: 0
     enabled: 1
     expandedInEditor: 0
@@ -1097,12 +1451,12 @@ MonoBehaviour:
       slotID: 0
       renderType: 1
       layerType: 1
-      enabled: 0
+      enabled: 1
       nameInEditor: Stars
       expandedInEditor: 0
-      timeSpan_start: 12
+      timeSpan_start: 18
       timeSpan_End: 5
-      fadingInTime: 0
+      fadingInTime: 5
       fadingOutTime: 5
       tintPercentage: 0
       renderDistance: []
@@ -1174,5 +1528,43 @@ MonoBehaviour:
       movementTypeCubemap: 0
       movementTypePlanar_Radial: 0
       movementTypeSatellite: 0
-    domeRadius: 90
-  satelliteLayers: []
+    domeRadius: 100
+  satelliteLayers:
+  - enabled: 1
+    nameInEditor: Satellite 1
+    timeSpan_start: 0
+    timeSpan_End: 24
+    fadeInTime: 0
+    fadeOutTime: 0
+    satellite: {fileID: 6438672508873746031, guid: 85fffff8da2209f488db387531537bc5,
+      type: 3}
+    satelliteSize: 500
+    radius: 500
+    initialAngle: 275
+    horizonPlaneRotation: 122
+    inclination: 90
+    movementSpeed: 25
+    satelliteRotation: 1
+    fixedRotation: {x: 90, y: 0, z: 0}
+    rotateAroundAxis: {x: 0, y: 1, z: 0}
+    rotateSpeed: 2
+    renderType: 0
+  - enabled: 0
+    nameInEditor: Satellite 1
+    timeSpan_start: 0
+    timeSpan_End: 24
+    fadeInTime: 0
+    fadeOutTime: 0
+    satellite: {fileID: 6438672508873746031, guid: 0c8c9997b5c986d45b555c1da35e5c4d,
+      type: 3}
+    satelliteSize: 5
+    radius: 75
+    initialAngle: 0
+    horizonPlaneRotation: 0
+    inclination: 0
+    movementSpeed: 25
+    satelliteRotation: 0
+    fixedRotation: {x: 0, y: 0, z: 0}
+    rotateAroundAxis: {x: 0, y: 0, z: 0}
+    rotateSpeed: 25
+    renderType: 1

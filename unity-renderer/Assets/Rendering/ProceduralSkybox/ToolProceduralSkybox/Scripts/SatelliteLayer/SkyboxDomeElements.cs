@@ -41,6 +41,9 @@ namespace DCL.Skybox
                 domeElements = new GameObject("Dome Elements");
                 domeElements.layer = LayerMask.NameToLayer("Skybox");
                 domeElements.transform.parent = skyboxElements.transform;
+
+                FollowBehavior followObj = domeElements.AddComponent<FollowBehavior>();
+                followObj.followPos = true;
             }
 
             for (int i = 0; i < domeElements.transform.childCount; i++)
@@ -163,6 +166,14 @@ namespace DCL.Skybox
 
                 TextureLayerFunctionality.ApplyTextureLayer(domeReferences[domeCount].domeMat, dayTime, normalizedDayTime, 0, config.additional3Dconfig[i].layers, cycleTime);
                 domeCount++;
+            }
+        }
+
+        public void ResolveCameraDependency(Transform currentTransform)
+        {
+            if (domeElements != null)
+            {
+                domeElements.GetComponent<FollowBehavior>().target = currentTransform.gameObject;
             }
         }
     }

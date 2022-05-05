@@ -10,6 +10,7 @@ namespace DCL.Skybox
     {
         private GameObject skyboxElementsGO;
         public SkyboxDomeElements domeElements;
+        public SkyboxSatelliteElements satelliteElements;
 
         public SkyboxElements()
         {
@@ -22,10 +23,19 @@ namespace DCL.Skybox
             }
 
             domeElements = new SkyboxDomeElements(skyboxElementsGO);
+            satelliteElements = new SkyboxSatelliteElements(skyboxElementsGO);
         }
 
-        public void ApplyConfigTo3DElements(SkyboxConfiguration config, float dayTime, float normalizedDayTime, Light directionalLightGO = null, float cycleTime = 24, bool isEditor = false) { domeElements.ApplyDomeConfigurations(config, dayTime, normalizedDayTime, directionalLightGO, cycleTime); }
+        public void ApplyConfigTo3DElements(SkyboxConfiguration config, float dayTime, float normalizedDayTime, Light directionalLightGO = null, float cycleTime = 24, bool isEditor = false)
+        {
+            domeElements.ApplyDomeConfigurations(config, dayTime, normalizedDayTime, directionalLightGO, cycleTime);
+            satelliteElements.ApplySatelliteConfigurations(config, dayTime, normalizedDayTime, directionalLightGO, cycleTime);
+        }
 
-        internal void AssignCameraInstance(Transform currentTransform) { }
+        internal void AssignCameraInstance(Transform currentTransform)
+        {
+            domeElements.ResolveCameraDependency(currentTransform);
+            satelliteElements.ResolveCameraDependency(currentTransform);
+        }
     }
 }

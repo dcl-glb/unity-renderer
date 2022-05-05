@@ -10,7 +10,7 @@ namespace DCL.Skybox
     {
         private GameObject skyboxCameraGO;
         private Camera skyboxCamera;
-        private SkyboxCameraBehavior camBehavior;
+        private FollowBehavior followBehavior;
 
         public SkyboxCamera()
         {
@@ -28,7 +28,9 @@ namespace DCL.Skybox
             skyboxCamera.cullingMask = (1 << LayerMask.NameToLayer("Skybox"));
 
             // Attach follow script
-            camBehavior = skyboxCameraGO.AddComponent<SkyboxCameraBehavior>();
+            followBehavior = skyboxCameraGO.AddComponent<FollowBehavior>();
+            followBehavior.followPos = true;
+            followBehavior.followRot = true;
         }
 
         public void AssignTargetCamera(Transform mainCam)
@@ -41,7 +43,7 @@ namespace DCL.Skybox
             cameraData.cameraStack.Add(camComponent);
 
 
-            camBehavior.targetCamera = mainCam.gameObject;
+            followBehavior.target = mainCam.gameObject;
         }
 
         public void SetCameraEnabledState(bool enabled) { skyboxCamera.enabled = enabled; }
