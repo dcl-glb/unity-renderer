@@ -4,6 +4,15 @@ using UnityEngine;
 
 namespace DCL.Skybox
 {
+    public class SatelliteReferences
+    {
+        public GameObject satelliteParent;
+        public GameObject orbitGO;
+        public GameObject satelliteGO;
+        public GameObject satellitePrefab;
+        public SatelliteLayerBehavior satelliteBehavior;
+    }
+
     public class SkyboxSatelliteElements
     {
         const string satelliteParentResourcePath = "SkyboxPrefabs/Satellite Parent";
@@ -11,6 +20,7 @@ namespace DCL.Skybox
         private GameObject skyboxElements;
         private GameObject satelliteElements;
         private GameObject satelliteParentPrefab;
+        private FollowBehavior followBehavior;
 
         Dictionary<GameObject, Queue<SatelliteReferences>> satelliteReferences = new Dictionary<GameObject, Queue<SatelliteReferences>>();
         List<SatelliteReferences> usedSatellites = new List<SatelliteReferences>();
@@ -35,9 +45,9 @@ namespace DCL.Skybox
             satelliteElements.layer = LayerMask.NameToLayer("Skybox");
             satelliteElements.transform.parent = skyboxElements.transform;
 
-            FollowBehavior followObj = satelliteElements.AddComponent<FollowBehavior>();
-            followObj.followPos = true;
-            followObj.ignoreYAxis = true;
+            followBehavior = satelliteElements.AddComponent<FollowBehavior>();
+            followBehavior.followPos = true;
+            followBehavior.ignoreYAxis = true;
         }
 
         internal void ApplySatelliteConfigurations(SkyboxConfiguration config, float dayTime, float normalizedDayTime, Light directionalLightGO, float cycleTime)
@@ -155,9 +165,9 @@ namespace DCL.Skybox
 
         public void ResolveCameraDependency(Transform currentTransform)
         {
-            if (satelliteElements != null)
+            if (followBehavior != null)
             {
-                satelliteElements.GetComponent<FollowBehavior>().target = currentTransform.gameObject;
+                followBehavior.target = currentTransform.gameObject;
             }
         }
     }

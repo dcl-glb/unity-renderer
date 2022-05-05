@@ -18,6 +18,7 @@ namespace DCL.Skybox
         private GameObject skyboxElements;
         private GameObject domeElements;
         private GameObject domePrefab;
+        private FollowBehavior followBehavior;
 
         Queue<DomeReferences> domeObjects = new Queue<DomeReferences>();
         Queue<DomeReferences> activeDomeObjects = new Queue<DomeReferences>();
@@ -42,8 +43,8 @@ namespace DCL.Skybox
                 domeElements.layer = LayerMask.NameToLayer("Skybox");
                 domeElements.transform.parent = skyboxElements.transform;
 
-                FollowBehavior followObj = domeElements.AddComponent<FollowBehavior>();
-                followObj.followPos = true;
+                followBehavior = domeElements.AddComponent<FollowBehavior>();
+                followBehavior.followPos = true;
             }
 
             for (int i = 0; i < domeElements.transform.childCount; i++)
@@ -171,9 +172,9 @@ namespace DCL.Skybox
 
         public void ResolveCameraDependency(Transform currentTransform)
         {
-            if (domeElements != null)
+            if (followBehavior != null)
             {
-                domeElements.GetComponent<FollowBehavior>().target = currentTransform.gameObject;
+                followBehavior.target = currentTransform.gameObject;
             }
         }
     }
