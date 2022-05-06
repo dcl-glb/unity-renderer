@@ -17,7 +17,7 @@ namespace DCL.Skybox
         private Transform planarElementsGO;
         private Transform planarCameraFollowingElements;
         private Transform planarStaticElements;
-        private FollowMainCamera followObj;
+        private FollowBehavior followObj;
 
         private Dictionary<GameObject, Queue<PlanarRefs>> planarReferences = new Dictionary<GameObject, Queue<PlanarRefs>>();
         private List<PlanarRefs> usedPlanes = new List<PlanarRefs>();
@@ -51,8 +51,8 @@ namespace DCL.Skybox
             planarStaticElements.gameObject.layer = LayerMask.NameToLayer("Skybox");
 
             // Add follow script
-            followObj = planarCameraFollowingElements.gameObject.AddComponent<FollowMainCamera>();
-            followObj.ignoreYPos = true;
+            followObj = planarCameraFollowingElements.gameObject.AddComponent<FollowBehavior>();
+            followObj.ignoreYAxis = true;
             followObj.followPos = true;
         }
 
