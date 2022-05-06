@@ -1163,7 +1163,7 @@ MonoBehaviour:
     nameInEditor: 
     layers:
       slotID: 1
-      renderType: 0
+      renderType: 1
       layerType: 2
       enabled: 0
       nameInEditor: Big Sun
@@ -1379,8 +1379,8 @@ MonoBehaviour:
       cubemap: {fileID: 0}
       color:
         serializedVersion: 2
-        key0: {r: 0.4745098, g: 0.22352941, b: 0.58431375, a: 1}
-        key1: {r: 1, g: 0.48612696, b: 0, a: 1}
+        key0: {r: 0.4745098, g: 0.22352941, b: 0.58431375, a: 0.4117647}
+        key1: {r: 1, g: 0.48612696, b: 0, a: 0.64705884}
         key2: {r: 0.8160377, g: 0.9916906, b: 1, a: 0.36862746}
         key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 0.9339623, g: 0.508445, b: 0.374466, a: 0}
@@ -1406,8 +1406,8 @@ MonoBehaviour:
         m_Mode: 0
         m_NumColorKeys: 8
         m_NumAlphaKeys: 2
-      tiling: {x: 5, y: 2}
-      flipbookRowsAndColumns: {x: 2.43, y: -9.78}
+      tiling: {x: 1, y: 1}
+      flipbookRowsAndColumns: {x: 0, y: 0}
       flipbookAnimSpeed: 0
       offset: []
       satelliteWidthHeight: []
@@ -1449,7 +1449,7 @@ MonoBehaviour:
     nameInEditor: 
     layers:
       slotID: 0
-      renderType: 1
+      renderType: 0
       layerType: 1
       enabled: 1
       nameInEditor: Stars
@@ -1531,40 +1531,22 @@ MonoBehaviour:
     domeRadius: 100
   satelliteLayers:
   - enabled: 1
-    nameInEditor: Satellite 1
+    nameInEditor: Satellite
     timeSpan_start: 0
-    timeSpan_End: 12
+    timeSpan_End: 18
     fadeInTime: 1
-    fadeOutTime: 1
+    fadeOutTime: 0.5
     satellite: {fileID: 6438672508873746031, guid: 85fffff8da2209f488db387531537bc5,
       type: 3}
-    satelliteSize: 500
-    radius: 500
-    initialAngle: 216
-    horizonPlaneRotation: 111
-    inclination: 59
-    movementSpeed: 25
+    satelliteSize: 326.1
+    radius: 436.2
+    initialAngle: 251
+    horizonPlaneRotation: 59
+    inclination: 90
+    movementSpeed: 10
+    orbitYOffset: 162.8
     satelliteRotation: 1
-    fixedRotation: {x: 90, y: 0, z: 0}
-    rotateAroundAxis: {x: 1, y: 1, z: 0}
-    rotateSpeed: 2
-    renderType: 0
-  - enabled: 0
-    nameInEditor: Satellite 1
-    timeSpan_start: 0
-    timeSpan_End: 24
-    fadeInTime: 0
-    fadeOutTime: 0
-    satellite: {fileID: 6438672508873746031, guid: 0c8c9997b5c986d45b555c1da35e5c4d,
-      type: 3}
-    satelliteSize: 5
-    radius: 75
-    initialAngle: 0
-    horizonPlaneRotation: 0
-    inclination: 0
-    movementSpeed: 25
-    satelliteRotation: 0
     fixedRotation: {x: 0, y: 0, z: 0}
-    rotateAroundAxis: {x: 0, y: 0, z: 0}
-    rotateSpeed: 25
-    renderType: 1
+    rotateAroundAxis: {x: 0, y: 1, z: 0}
+    rotateSpeed: 5
+    renderType: 0
