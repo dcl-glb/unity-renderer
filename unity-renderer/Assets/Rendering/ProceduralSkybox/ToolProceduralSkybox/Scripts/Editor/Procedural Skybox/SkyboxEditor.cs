@@ -435,6 +435,9 @@ namespace DCL.Skybox
                 case SkyboxEditorToolsParts.Elements3D_Satellite:
                     RenderSatellite3DLayer.RenderLayer(ref timeOfTheDay, toolSize, obj.targetSatelliteElement);
                     break;
+                case SkyboxEditorToolsParts.Elements3D_Planar:
+                    RenderPlanar3DLayer.RenderLayer(ref timeOfTheDay, toolSize, obj.targetPlanarElement);
+                    break;
                 default:
                     break;
             }
