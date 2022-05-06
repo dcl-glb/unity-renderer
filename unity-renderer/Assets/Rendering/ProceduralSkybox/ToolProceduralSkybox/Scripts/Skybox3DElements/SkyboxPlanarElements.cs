@@ -9,9 +9,10 @@ namespace DCL.Skybox
     {
         public GameObject prefab;
         public GameObject planarObject;
+        public bool inUse = false;
     }
 
-    public class Planar3DElements
+    public class SkyboxPlanarElements
     {
         private GameObject skyboxElementsGO;
         private Transform planarElementsGO;
@@ -22,7 +23,7 @@ namespace DCL.Skybox
         private Dictionary<GameObject, Queue<PlanarRefs>> planarReferences = new Dictionary<GameObject, Queue<PlanarRefs>>();
         private List<PlanarRefs> usedPlanes = new List<PlanarRefs>();
 
-        public Planar3DElements(GameObject skyboxElementsGO)
+        public SkyboxPlanarElements(GameObject skyboxElementsGO)
         {
             this.skyboxElementsGO = skyboxElementsGO;
             // Get or instantiate Skybox elements GameObject
@@ -56,44 +57,62 @@ namespace DCL.Skybox
             followObj.followPos = true;
         }
 
-        internal void AssignCameraInstance(Transform cameraTransform) { followObj.target = cameraTransform.gameObject; }
+        internal void ResolveCameraDependency(Transform cameraTransform) { followObj.target = cameraTransform.gameObject; }
 
         internal void ApplyConfig(List<Config3DPlanar> planarLayers, float timeOfTheDay, float cycleTime, bool isEditor)
         {
-            ResetPlanes();
-            for (int i = 0; i < planarLayers.Count; i++)
+            if (isEditor || (usedPlanes == null))
             {
-                // if this layer is disabled, continue
+                ResetPlanes();
+                GetAllEnabledPlanarRefs(planarLayers);
+            }
+
+            for (int i = 0; i < usedPlanes.Count; i++)
+            {
+                // If satellite is disabled, disable the 3D object too.
                 if (!planarLayers[i].enabled)
                 {
-                    planarLayers[i].renderType = LayerRenderType.NotRendering;
+                    if (usedPlanes[i] != null)
+                    {
+                        usedPlanes[i].planarObject.SetActive(false);
+                    }
                     continue;
                 }
 
-                // Get planar ref for config
-                PlanarRefs tempRef = GetPlanarRef(planarLayers[i]);
-                // If no prefab is assigned for current config, continue.
-                if (tempRef == null)
+                if (usedPlanes[i] == null)
                 {
+#if UNITY_EDITOR
+                    Debug.LogWarning(planarLayers[i].nameInEditor + " Plane not working!, prefab not assigned");
+#endif
                     continue;
                 }
 
-                ApplyParticleProperties(planarLayers[i], tempRef);
+                ApplyParticleProperties(planarLayers[i], usedPlanes[i]);
 
                 // Parent with the moving or static parent
-                ParentPlanarLayer(planarLayers[i], tempRef);
+                ParentPlanarLayer(planarLayers[i], usedPlanes[i]);
 
                 // Change layer mask
-                ChangeRenderingCamera(planarLayers[i], tempRef);
+                ChangeRenderingCamera(planarLayers[i], usedPlanes[i]);
 
                 // if this layer is not active at present time, disable the object
                 if (!IsLayerActiveInCurrentTime(timeOfTheDay, planarLayers[i], cycleTime))
                 {
                     planarLayers[i].renderType = LayerRenderType.NotRendering;
-                    tempRef.planarObject.SetActive(false);
+                    usedPlanes[i].planarObject.SetActive(false);
                     continue;
                 }
+
             }
+        }
+
+        public List<PlanarRefs> GetAllEnabledPlanarRefs(List<Config3DPlanar> planarLayers)
+        {
+            for (int i = 0; i < planarLayers.Count; i++)
+            {
+                GetPlanarRef(planarLayers[i]);
+            }
+            return usedPlanes;
         }
 
         private void ChangeRenderingCamera(Config3DPlanar config, PlanarRefs tempRef)
@@ -133,21 +152,13 @@ namespace DCL.Skybox
             tempRef.planarObject.transform.position = pos;
         }
 
-        public List<PlanarRefs> GetAllEnabledPlanarRefs(List<Config3DPlanar> planarLayers)
-        {
-            for (int i = 0; i < planarLayers.Count; i++)
-            {
-                GetPlanarRef(planarLayers[i]);
-            }
-            return usedPlanes;
-        }
-
         public PlanarRefs GetPlanarRef(Config3DPlanar config)
         {
             PlanarRefs tempPlane = null;
 
             if (config.prefab == null)
             {
+                usedPlanes.Add(tempPlane);
                 return tempPlane;
             }
 
@@ -169,7 +180,6 @@ namespace DCL.Skybox
                 planarReferences.Add(config.prefab, new Queue<PlanarRefs>());
                 tempPlane = InstantiateNewSatelliteReference(config);
             }
-
             usedPlanes.Add(tempPlane);
             tempPlane.planarObject.SetActive(true);
 
@@ -198,6 +208,7 @@ namespace DCL.Skybox
                 for (int i = 0; i < usedPlanes.Count; i++)
                 {
                     PlanarRefs plane = usedPlanes[i];
+                    plane.inUse = false;
                     plane.planarObject.SetActive(false);
                     planarReferences[plane.prefab].Enqueue(plane);
                 }
