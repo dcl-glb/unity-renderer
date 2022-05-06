@@ -58,7 +58,7 @@ namespace DCL.Skybox
 
         internal void AssignCameraInstance(Transform cameraTransform) { followObj.target = cameraTransform.gameObject; }
 
-        internal void ApplyConfig(List<Planar3DConfig> planarLayers, float timeOfTheDay, float cycleTime, bool isEditor)
+        internal void ApplyConfig(List<Config3DPlanar> planarLayers, float timeOfTheDay, float cycleTime, bool isEditor)
         {
             ResetPlanes();
             for (int i = 0; i < planarLayers.Count; i++)
@@ -96,7 +96,7 @@ namespace DCL.Skybox
             }
         }
 
-        private void ChangeRenderingCamera(Planar3DConfig config, PlanarRefs tempRef)
+        private void ChangeRenderingCamera(Config3DPlanar config, PlanarRefs tempRef)
         {
             if (config.renderWithMainCamera)
             {
@@ -108,7 +108,7 @@ namespace DCL.Skybox
             }
         }
 
-        private void ParentPlanarLayer(Planar3DConfig config, PlanarRefs tempRef)
+        private void ParentPlanarLayer(Config3DPlanar config, PlanarRefs tempRef)
         {
             if (config.followCamera)
             {
@@ -120,7 +120,7 @@ namespace DCL.Skybox
             }
         }
 
-        private void ApplyParticleProperties(Planar3DConfig config, PlanarRefs tempRef)
+        private void ApplyParticleProperties(Config3DPlanar config, PlanarRefs tempRef)
         {
             // Apply radius
             ParticleSystem particle = tempRef.planarObject.GetComponent<ParticleSystem>();
@@ -133,7 +133,7 @@ namespace DCL.Skybox
             tempRef.planarObject.transform.position = pos;
         }
 
-        public List<PlanarRefs> GetAllEnabledPlanarRefs(List<Planar3DConfig> planarLayers)
+        public List<PlanarRefs> GetAllEnabledPlanarRefs(List<Config3DPlanar> planarLayers)
         {
             for (int i = 0; i < planarLayers.Count; i++)
             {
@@ -142,7 +142,7 @@ namespace DCL.Skybox
             return usedPlanes;
         }
 
-        public PlanarRefs GetPlanarRef(Planar3DConfig config)
+        public PlanarRefs GetPlanarRef(Config3DPlanar config)
         {
             PlanarRefs tempPlane = null;
 
@@ -176,7 +176,7 @@ namespace DCL.Skybox
             return tempPlane;
         }
 
-        PlanarRefs InstantiateNewSatelliteReference(Planar3DConfig config)
+        PlanarRefs InstantiateNewSatelliteReference(Config3DPlanar config)
         {
             GameObject obj = GameObject.Instantiate<GameObject>(config.prefab);
             obj.layer = LayerMask.NameToLayer("Skybox");
@@ -205,7 +205,7 @@ namespace DCL.Skybox
             }
         }
 
-        private bool IsLayerActiveInCurrentTime(float timeOfTheDay, Planar3DConfig config, float cycleTime)
+        private bool IsLayerActiveInCurrentTime(float timeOfTheDay, Config3DPlanar config, float cycleTime)
         {
             // Calculate edited time for the case of out time less than in time (over the day scenario)
             float outTimeEdited = config.timeSpan_End;

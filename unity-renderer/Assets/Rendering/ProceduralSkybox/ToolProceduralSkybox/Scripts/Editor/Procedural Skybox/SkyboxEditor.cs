@@ -299,6 +299,13 @@ namespace DCL.Skybox
 
             RenderLeftPanelSatelliteLayers.Render(ref timeOfTheDay, toolSize, selectedConfiguration, AddToRightPanel, copyPasteObj);
 
+            // Render Satellite list
+            EditorGUILayout.LabelField(SkyboxEditorLiterals.RenderSatelliteLayers, EditorStyles.label, GUILayout.Width(leftPanelWidth - 10), GUILayout.ExpandWidth(false));
+
+            EditorGUILayout.Space(toolSize.leftPanelButtonSpace);
+
+            RenderLeftPanelPlanarLayers.Render(ref timeOfTheDay, toolSize, selectedConfiguration, AddToRightPanel, copyPasteObj);
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndScrollView();
         }
